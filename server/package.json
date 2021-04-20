@@ -7,11 +7,19 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --passWithNoTests --runInBand --no-cache",
+    "test:watch": "npx yarn test --watch",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "start": "node dist/main/server.js"
   },
   "devDependencies": {
+    "@types/faker": "^5.5.3",
+    "@types/jest": "^26.0.22",
     "@types/node": "^14.14.41",
+    "@types/supertest": "^2.0.11",
+    "faker": "^5.5.3",
+    "jest": "^26.6.3",
+    "supertest": "^6.1.3",
+    "ts-jest": "^26.5.5",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.4"
   }
