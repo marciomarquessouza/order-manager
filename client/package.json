@@ -24,12 +24,24 @@
         "build": "craco build",
         "test": "jest --passWithNoTests --runInBand --no-cache",
         "test:watch": "craco test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "storybook": "start-storybook -p 6006 -s public",
+        "build-storybook": "build-storybook -s public"
     },
     "eslintConfig": {
         "extends": [
             "react-app",
             "react-app/jest"
+        ],
+        "overrides": [
+            {
+                "files": [
+                    "**/*.stories.*"
+                ],
+                "rules": {
+                    "import/no-anonymous-default-export": "off"
+                }
+            }
         ]
     },
     "browserslist": {
@@ -45,6 +57,12 @@
         ]
     },
     "devDependencies": {
+        "@storybook/addon-actions": "^6.2.8",
+        "@storybook/addon-essentials": "^6.2.8",
+        "@storybook/addon-links": "^6.2.8",
+        "@storybook/node-logger": "^6.2.8",
+        "@storybook/preset-create-react-app": "^3.1.7",
+        "@storybook/react": "^6.2.8",
         "@tailwindcss/postcss7-compat": "^2.1.0",
         "@typescript-eslint/eslint-plugin": "^4.22.0",
         "@typescript-eslint/parser": "^4.22.0",
