@@ -1,0 +1,11 @@
+{
+  "name": "order-manager-server",
+  "description": "NodeJs Rest API using Express, Typescript, Solid and TDD",
+  "version": "1.0.0",
+  "author": "Marcio Marques de Souza",
+  "repository": "https://github.com/marciomarquessouza/order-manager",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --passWithNoTests --runInBand --no-cache"
+  }
+}
