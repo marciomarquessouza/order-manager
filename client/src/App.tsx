@@ -1,8 +1,13 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 
 function App() {
   return (
-    <main className="text-xl font-medium text-black">Order Manager Client</main>
+    <main className="m-12">
+      <Typography variant="h5" color="textSecondary" align="center">
+        Order Manager
+      </Typography>
+    </main>
   );
 }
 
