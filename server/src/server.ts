@@ -4,8 +4,8 @@ export class SettingsTests {
   method01(justNumber: number): void {
     console.log(`This is just a number ${justNumber}`);
   }
-
   method02(): string {
+    console.log("Here");
     return this.attributte1;
   }
 }
