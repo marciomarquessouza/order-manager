@@ -5,7 +5,7 @@ function App() {
     return (
         <main className="m-12">
             <Typography variant="h5" color="textSecondary" align="center">
-                Order Manager
+                Order Manager Client
             </Typography>
         </main>
     );
