@@ -2,15 +2,6 @@
 
 [![alt text](https://i.imgur.com/Kf5MdoT.png "Link para o sistema")]()
 
-> ## Metodologies and Designs
-
-- TDD
-- Clean Architecture
-- DDD
-- Conventional Commits
-- GitFlow
-- Use Cases
-
 > ## Libs and Tools
 
 - NPM
