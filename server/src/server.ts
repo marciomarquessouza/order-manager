@@ -5,7 +5,7 @@ export class SettingsTests {
     console.log(`This is just a number ${justNumber}`);
   }
   method02(): string {
-    console.log("Here");
+    console.log("Here ");
     return this.attributte1;
   }
 }
