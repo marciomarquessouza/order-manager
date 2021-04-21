@@ -29,11 +29,11 @@ describe('#Use Case | Update Order', () => {
             expect(updateOrderRepositorySpy.params).toBe(orderParams);
         });
 
-        it('returns the order update in the repository', async () => {
-            const { sut, updateOrderRepositorySpy } = makeSut();
+        it('returns true if the order was updated in the repository', async () => {
+            const { sut } = makeSut();
             const orderParams = mockUpdateOrderParams();
-            const order = await sut.execute(orderParams, orderId);
-            expect(order).toEqual(updateOrderRepositorySpy.result);
+            const hasUpdated = await sut.execute(orderParams, orderId);
+            expect(hasUpdated).toBe(true);
         });
     });
 });
