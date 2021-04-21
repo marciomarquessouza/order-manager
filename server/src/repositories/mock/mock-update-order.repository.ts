@@ -27,7 +27,7 @@ export class UpdateOrderRepositorySpy implements UpdateOrderRepository {
                 zip: faker.address.zipCode(),
             },
         };
-        const updatedOrder = Object.assign({ ...mockRepositoryResult }, data);
-        return updatedOrder;
+        this.result = Object.assign({ ...mockRepositoryResult }, data);
+        return this.result;
     }
 }
