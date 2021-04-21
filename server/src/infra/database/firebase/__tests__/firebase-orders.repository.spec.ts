@@ -1,8 +1,11 @@
-import { mockOrder, mockOrders } from '@/entities/mocks/mock-order';
+import { mockOrder } from '@/entities/mocks/mock-order';
 import { mockCreateOrderParams } from '@/usecases/create-order/mock/mock-create-order.usecase';
+import { mockUpdateOrderParams } from '@/usecases/update-order/mock/mock-update-order.usecase';
 import { FirebaseOrderRepository } from '../firebase-orders.repository';
 
 const setSpy = jest.fn();
+const updateSpy = jest.fn();
+const uid = 'orderId';
 
 jest.mock('../firebase-helper', () => ({
     FirebaseHelper: {
@@ -10,10 +13,11 @@ jest.mock('../firebase-helper', () => ({
         getCollection: () => ({
             doc: () => ({
                 set: setSpy,
+                update: updateSpy,
             }),
             get: jest.fn().mockResolvedValueOnce({
                 empty: false,
-                docs: [{ data: () => ({ ...mockOrder(), uid: 'orderId' }) }],
+                docs: [{ data: () => ({ ...mockOrder(), uid }) }],
             }),
         }),
         getUid: () => 'orderId',
@@ -31,7 +35,7 @@ describe('#Firebase Database | Create Order', () => {
                 const sut = makeSut();
                 const createOrderParams = mockCreateOrderParams();
                 await sut.create(createOrderParams);
-                expect(setSpy).toHaveBeenCalledWith({ uid: 'orderId', ...createOrderParams });
+                expect(setSpy).toHaveBeenCalledWith({ uid, ...createOrderParams });
             });
         });
     });
@@ -41,7 +45,18 @@ describe('#Firebase Database | Create Order', () => {
             it('returns all orders available in the repository', async () => {
                 const sut = makeSut();
                 const orders = await sut.loadAll();
-                expect(orders).toEqual([{ ...mockOrder(), uid: 'orderId' }]);
+                expect(orders).toEqual([{ ...mockOrder(), uid }]);
+            });
+        });
+    });
+
+    describe('update()', () => {
+        describe('when update an order', () => {
+            it('call the firebase update method', async () => {
+                const sut = makeSut();
+                const updateOrderParams = mockUpdateOrderParams();
+                await sut.update(updateOrderParams, uid);
+                expect(updateSpy).toHaveBeenCalledWith({ ...updateOrderParams });
             });
         });
     });
