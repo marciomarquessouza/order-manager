@@ -31,16 +31,16 @@ describe('#Use Case | Create Order', () => {
             const order = await sut.execute(mockCreateOrderParams());
             expect(order).toEqual(createOrderRepositorySpy.result);
         });
-    });
 
-    describe('when CreateOrderRepository throws an error', () => {
-        it('thows a reject error as well', async () => {
-            const { sut, createOrderRepositorySpy } = makeSut();
-            jest.spyOn(createOrderRepositorySpy, 'create').mockImplementationOnce(() => {
-                throw new Error();
+        describe('when CreateOrderRepository throws an error', () => {
+            it('thows a reject error as well', async () => {
+                const { sut, createOrderRepositorySpy } = makeSut();
+                jest.spyOn(createOrderRepositorySpy, 'create').mockImplementationOnce(() => {
+                    throw new Error();
+                });
+                const promise = sut.execute(mockCreateOrderParams());
+                await expect(promise).rejects.toThrow();
             });
-            const promise = sut.execute(mockCreateOrderParams());
-            await expect(promise).rejects.toThrow();
         });
     });
 });
