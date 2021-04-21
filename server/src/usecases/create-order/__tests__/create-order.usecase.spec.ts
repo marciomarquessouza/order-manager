@@ -23,7 +23,8 @@ describe('#Use Case | Create Order', () => {
             const { sut, createOrderRepositorySpy } = makeSut();
             const orderParams = mockCreateOrderParams();
             await sut.execute(orderParams);
-            expect(createOrderRepositorySpy.params).toBe(orderParams);
+            const { title, bookingDate, address, customer } = createOrderRepositorySpy.params;
+            expect({ title, bookingDate, address, customer }).toEqual(orderParams);
         });
 
         describe('when CreateOrderRepository throws an error', () => {

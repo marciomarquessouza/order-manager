@@ -1,7 +1,7 @@
-import { CreateOrder } from '@usecases/create-order/create-order.protocols';
+import { Order } from '@/entities/Order';
 
 export namespace CreateOrderRepository {
-    export type Params = CreateOrder.Params;
+    export type Params = Order;
 }
 
 export interface CreateOrderRepository {

@@ -1,12 +1,12 @@
 import { CreateOrderRepository, LoadOrdersRepository, UpdateOrderRepository } from '@/repositories';
-import { CreateOrder, LoadOrders, UpdateOrder } from '@/usecases';
+import { LoadOrders, UpdateOrder } from '@/usecases';
 import { FirebaseHelper } from './firebase-helper';
 
 export class FirebaseOrderRepository
     implements CreateOrderRepository, LoadOrdersRepository, UpdateOrderRepository {
-    async create(data: CreateOrder.Params): Promise<void> {
+    async create(data: CreateOrderRepository.Params): Promise<void> {
         const orderCollection = FirebaseHelper.getCollection('orders');
-        await orderCollection.doc().set(data);
+        await orderCollection.doc(data.uid).set(data);
     }
 
     async loadAll(): Promise<LoadOrders.Result> {

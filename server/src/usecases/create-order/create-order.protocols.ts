@@ -1,7 +1,7 @@
 import { Order } from '@entities/Order';
 
 export namespace CreateOrder {
-    export type Params = Omit<Order, 'id'>;
+    export type Params = Omit<Order, 'uid'>;
 }
 
 export interface CreateOrder {
