@@ -19,7 +19,7 @@ const makeSut = (): SutTypes => {
 
 describe('#Use Case | Create Order', () => {
     describe('when a new order is created', () => {
-        it('calls the save method with the appropriate data', async () => {
+        it('calls the create method with the appropriate params', async () => {
             const { sut, createOrderRepositorySpy } = makeSut();
             const orderParams = mockCreateOrderParams();
             await sut.execute(orderParams);
