@@ -4,8 +4,7 @@ import { CreateOrder } from './create-order.protocols';
 export class CreateOrderUseCase implements CreateOrder {
     constructor(private readonly createOrderRepository: CreateOrderRepository) {}
 
-    async execute(orderData: CreateOrder.Params): Promise<CreateOrder.Result> {
-        const order = await this.createOrderRepository.create(orderData);
-        return order;
+    async execute(orderData: CreateOrder.Params): Promise<void> {
+        await this.createOrderRepository.create(orderData);
     }
 }
