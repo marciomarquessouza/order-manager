@@ -1,11 +1,9 @@
-import { Order } from '@entities/Order';
-
 export namespace UpdateOrder {
     export type Params = {
         title?: string;
         bookingDate?: Date;
     };
-    export type Result = Order;
+    export type Result = boolean;
 }
 
 export interface UpdateOrder {
