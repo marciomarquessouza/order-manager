@@ -35,5 +35,13 @@ describe('#Use Case | Update Order', () => {
             const hasUpdated = await sut.execute(orderParams, orderId);
             expect(hasUpdated).toBe(true);
         });
+
+        it('returns false if the order has not been updated in the repository', async () => {
+            const { sut, updateOrderRepositorySpy } = makeSut();
+            const orderParams = mockUpdateOrderParams();
+            updateOrderRepositorySpy.result = false;
+            const hasUpdated = await sut.execute(orderParams, orderId);
+            expect(hasUpdated).toBe(false);
+        });
     });
 });
