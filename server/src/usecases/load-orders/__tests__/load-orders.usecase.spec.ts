@@ -30,5 +30,16 @@ describe('#Use Case | Load Orders', () => {
             const orders = await sut.execute();
             expect(orders).toEqual(loadOrdersRepositorySpy.result);
         });
+
+        describe('when LoadOrdersRepository throws an error', () => {
+            it('throws a reject error', async () => {
+                const { sut, loadOrdersRepositorySpy } = makeSut();
+                jest.spyOn(loadOrdersRepositorySpy, 'loadAll').mockImplementationOnce(() => {
+                    throw new Error();
+                });
+                const promise = sut.execute();
+                await expect(promise).rejects.toThrow();
+            });
+        });
     });
 });
