@@ -5,8 +5,9 @@ import { FirebaseHelper } from './firebase-helper';
 export class FirebaseOrderRepository
     implements CreateOrderRepository, LoadOrdersRepository, UpdateOrderRepository {
     async create(data: CreateOrderRepository.Params): Promise<void> {
+        const uid = FirebaseHelper.getUid();
         const orderCollection = FirebaseHelper.getCollection('orders');
-        await orderCollection.doc(data.uid).set(data);
+        await orderCollection.doc(uid).set({ uid, ...data });
     }
 
     async loadAll(): Promise<LoadOrders.Result> {
