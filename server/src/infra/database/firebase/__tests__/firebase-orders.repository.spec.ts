@@ -1,3 +1,4 @@
+import { mockOrder, mockOrders } from '@/entities/mocks/mock-order';
 import { mockCreateOrderParams } from '@/usecases/create-order/mock/mock-create-order.usecase';
 import { FirebaseOrderRepository } from '../firebase-orders.repository';
 
@@ -9,6 +10,10 @@ jest.mock('../firebase-helper', () => ({
         getCollection: () => ({
             doc: () => ({
                 set: setSpy,
+            }),
+            get: jest.fn().mockResolvedValueOnce({
+                empty: false,
+                docs: [{ data: () => ({ ...mockOrder(), uid: 'orderId' }) }],
             }),
         }),
         getUid: () => 'orderId',
@@ -27,6 +32,16 @@ describe('#Firebase Database | Create Order', () => {
                 const createOrderParams = mockCreateOrderParams();
                 await sut.create(createOrderParams);
                 expect(setSpy).toHaveBeenCalledWith({ uid: 'orderId', ...createOrderParams });
+            });
+        });
+    });
+
+    describe('loadAll()', () => {
+        describe('when the loadAll method is called', () => {
+            it('returns all orders available in the repository', async () => {
+                const sut = makeSut();
+                const orders = await sut.loadAll();
+                expect(orders).toEqual([{ ...mockOrder(), uid: 'orderId' }]);
             });
         });
     });
