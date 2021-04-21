@@ -26,12 +26,6 @@ describe('#Use Case | Create Order', () => {
             expect(createOrderRepositorySpy.params).toBe(orderParams);
         });
 
-        it('returns the order created in the repository', async () => {
-            const { sut, createOrderRepositorySpy } = makeSut();
-            const order = await sut.execute(mockCreateOrderParams());
-            expect(order).toEqual(createOrderRepositorySpy.result);
-        });
-
         describe('when CreateOrderRepository throws an error', () => {
             it('thows a reject error as well', async () => {
                 const { sut, createOrderRepositorySpy } = makeSut();
