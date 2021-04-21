@@ -1,3 +1,4 @@
+import { Order } from '@entities/Order';
 import { CreateOrderRepository, LoadOrdersRepository, UpdateOrderRepository } from '@/repositories';
 import { LoadOrders, UpdateOrder } from '@/usecases';
 import { FirebaseHelper } from './firebase-helper';
@@ -11,7 +12,13 @@ export class FirebaseOrderRepository
     }
 
     async loadAll(): Promise<LoadOrders.Result> {
-        throw new Error('Method not implemented.');
+        const orderCollection = FirebaseHelper.getCollection('orders');
+        const result = await orderCollection.get();
+        if (result.empty) {
+            return [];
+        }
+        const orders = result.docs.map((doc) => doc.data() as Order);
+        return orders;
     }
 
     async update(data: UpdateOrder.Params, id: string): Promise<boolean> {
