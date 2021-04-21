@@ -29,7 +29,7 @@ describe('#Use Case | Update Order', () => {
             expect(updateOrderRepositorySpy.params).toBe(orderParams);
         });
 
-        it('returns true if the order was updated in the repository', async () => {
+        it('returns true if the order has been updated in the repository', async () => {
             const { sut } = makeSut();
             const orderParams = mockUpdateOrderParams();
             const hasUpdated = await sut.execute(orderParams, orderId);
