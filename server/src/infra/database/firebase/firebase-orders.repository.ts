@@ -22,6 +22,8 @@ export class FirebaseOrderRepository
     }
 
     async update(data: UpdateOrder.Params, id: string): Promise<boolean> {
-        throw new Error('Method not implemented.');
+        const orderCollection = FirebaseHelper.getCollection('orders');
+        await orderCollection.doc(id).update(data);
+        return true;
     }
 }
