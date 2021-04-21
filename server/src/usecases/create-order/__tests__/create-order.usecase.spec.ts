@@ -25,5 +25,11 @@ describe('#Use Case | Create Order', () => {
             await sut.execute(orderParams);
             expect(createOrderRepositorySpy.params).toBe(orderParams);
         });
+
+        it('returns the user created in the repository', async () => {
+            const { sut, createOrderRepositorySpy } = makeSut();
+            const user = await sut.execute(mockCreateOrderParams());
+            expect(user).toEqual(createOrderRepositorySpy.result);
+        });
     });
 });
