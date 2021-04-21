@@ -24,5 +24,11 @@ describe('#Use Case | Load Orders', () => {
             await sut.execute();
             expect(spy).toHaveBeenCalled();
         });
+
+        it('return a list of orders from the repository', async () => {
+            const { sut, loadOrdersRepositorySpy } = makeSut();
+            const orders = await sut.execute();
+            expect(orders).toEqual(loadOrdersRepositorySpy.result);
+        });
     });
 });
