@@ -18,14 +18,22 @@ const makeSut = (): SutTypes => {
     };
 };
 
+const orderId = faker.datatype.uuid();
+
 describe('#Use Case | Update Order', () => {
     describe('when the order update use case is called', () => {
         it('calls the update method from repository with appropriate params ', async () => {
             const { sut, updateOrderRepositorySpy } = makeSut();
-            const orderId = faker.datatype.uuid();
             const orderParams = mockUpdateOrderParams();
             await sut.execute(orderParams, orderId);
             expect(updateOrderRepositorySpy.params).toBe(orderParams);
+        });
+
+        it('returns the order update in the repository', async () => {
+            const { sut, updateOrderRepositorySpy } = makeSut();
+            const orderParams = mockUpdateOrderParams();
+            const order = await sut.execute(orderParams, orderId);
+            expect(order).toEqual(updateOrderRepositorySpy.result);
         });
     });
 });
