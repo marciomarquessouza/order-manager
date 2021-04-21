@@ -1,5 +1,5 @@
 import { CreateOrderRepository } from '@repositories/create-order.repository';
-import { CreateOrder } from './create-order.interface';
+import { CreateOrder } from './create-order.protocols';
 
 export class CreateOrderUseCase implements CreateOrder {
     constructor(private readonly createOrderRepository: CreateOrderRepository) {}

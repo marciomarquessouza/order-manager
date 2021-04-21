@@ -1,5 +1,5 @@
 import { CreateOrderRepository } from '@repositories/create-order.repository';
-import { CreateOrder } from '@usecases/create-order/create-order.interface';
+import { CreateOrder } from '@usecases/create-order/create-order.protocols';
 import faker from 'faker';
 
 export class CreateOrderRepositorySpy implements CreateOrderRepository {

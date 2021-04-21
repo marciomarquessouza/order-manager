@@ -1,5 +1,5 @@
 import { CreateOrderUseCase } from '../create-order.usecase';
-import { CreateOrder } from '../create-order.interface';
+import { CreateOrder } from '../create-order.protocols';
 import { CreateOrderRepositorySpy } from '@repositories/mock/mock-create-order.repository';
 import { mockCreateOrderParams } from '../mock/mock-create-order.user-case';
 

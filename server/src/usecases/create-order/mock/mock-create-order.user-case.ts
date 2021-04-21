@@ -1,4 +1,4 @@
-import { CreateOrder } from '../create-order.interface';
+import { CreateOrder } from '../create-order.protocols';
 import faker from 'faker';
 
 export const mockCreateOrderParams = (): CreateOrder.Params => ({
