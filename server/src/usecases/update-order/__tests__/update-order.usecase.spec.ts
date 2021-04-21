@@ -43,5 +43,16 @@ describe('#Use Case | Update Order', () => {
             const hasUpdated = await sut.execute(orderParams, orderId);
             expect(hasUpdated).toBe(false);
         });
+
+        describe('when UpdateOrder Repository throws an error', () => {
+            it('throws a rejected error', async () => {
+                const { sut, updateOrderRepositorySpy } = makeSut();
+                jest.spyOn(updateOrderRepositorySpy, 'update').mockImplementationOnce(() => {
+                    throw new Error();
+                });
+                const promise = sut.execute(mockUpdateOrderParams(), orderId);
+                await expect(promise).rejects.toThrow();
+            });
+        });
     });
 });
