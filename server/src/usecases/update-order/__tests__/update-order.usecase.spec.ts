@@ -29,21 +29,6 @@ describe('#Use Case | Update Order', () => {
             expect(updateOrderRepositorySpy.params).toBe(orderParams);
         });
 
-        it('returns true if the order has been updated in the repository', async () => {
-            const { sut } = makeSut();
-            const orderParams = mockUpdateOrderParams();
-            const hasUpdated = await sut.execute(orderParams, orderId);
-            expect(hasUpdated).toBe(true);
-        });
-
-        it('returns false if the order has not been updated in the repository', async () => {
-            const { sut, updateOrderRepositorySpy } = makeSut();
-            const orderParams = mockUpdateOrderParams();
-            updateOrderRepositorySpy.result = false;
-            const hasUpdated = await sut.execute(orderParams, orderId);
-            expect(hasUpdated).toBe(false);
-        });
-
         describe('when UpdateOrder Repository throws an error', () => {
             it('throws a rejected error', async () => {
                 const { sut, updateOrderRepositorySpy } = makeSut();

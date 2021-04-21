@@ -21,9 +21,8 @@ export class FirebaseOrderRepository
         return orders;
     }
 
-    async update(data: UpdateOrder.Params, id: string): Promise<boolean> {
+    async update(data: UpdateOrder.Params, id: string): Promise<void> {
         const orderCollection = FirebaseHelper.getCollection('orders');
         await orderCollection.doc(id).update(data);
-        return true;
     }
 }
