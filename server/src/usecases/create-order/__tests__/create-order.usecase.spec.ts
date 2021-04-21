@@ -28,8 +28,8 @@ describe('#Use Case | Create Order', () => {
 
         it('returns the order created in the repository', async () => {
             const { sut, createOrderRepositorySpy } = makeSut();
-            const user = await sut.execute(mockCreateOrderParams());
-            expect(user).toEqual(createOrderRepositorySpy.result);
+            const order = await sut.execute(mockCreateOrderParams());
+            expect(order).toEqual(createOrderRepositorySpy.result);
         });
     });
 
