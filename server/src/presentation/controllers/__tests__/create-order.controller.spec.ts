@@ -8,7 +8,7 @@ import { CreateOrderController } from '../create-order.controller';
 
 type SutTypes = {
     sut: CreateOrderController;
-    createOrderSpy: CreateOrder;
+    createOrderSpy: CreateOrderSpy;
     validationSpy: ValidationSpy;
 };
 
@@ -38,6 +38,13 @@ describe('#Controller | Create Order', () => {
             validationSpy.error = new Error();
             const response = await sut.handle(request);
             expect(response.statusCode).toBe(400);
+        });
+
+        it('calls the create order use case with the correct parameters', async () => {
+            const { sut, createOrderSpy } = makeSut();
+            const request = mockCreateOrderParams();
+            await sut.handle(request);
+            expect(createOrderSpy.params).toBe(request);
         });
     });
 });
