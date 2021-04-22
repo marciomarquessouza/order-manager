@@ -21,9 +21,9 @@ export class AuthByTokenMiddleware implements Middleware<AuthByTokenMiddleware.r
                 if (userId) {
                     return ok({ userId });
                 }
-            } else {
-                return forbiden();
             }
+
+            return forbiden();
         } catch (error) {}
     }
 }
