@@ -11,7 +11,7 @@ export namespace CreateOrderController {
 export class CreateOrderController implements Controller<CreateOrderController.Request> {
     constructor(
         private readonly createOrder: CreateOrder,
-        private readonly validation: Validation,
+        private readonly validation: Validation<CreateOrderController.Request>,
     ) {}
 
     async handle(request: CreateOrderController.Request): Promise<HttpResponse> {

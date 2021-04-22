@@ -34,7 +34,8 @@
     "dotenv": "^8.2.0",
     "firebase-admin": "^9.6.0",
     "module-alias": "^2.2.2",
-    "uuidv4": "^6.2.7"
+    "uuidv4": "^6.2.7",
+    "validate": "^5.1.0"
   },
   "_moduleAliases": {
     "@": "dist"

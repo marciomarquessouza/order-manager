@@ -3,7 +3,7 @@ import faker from 'faker';
 
 export const mockCreateOrderParams = (): CreateOrder.Params => ({
     title: faker.commerce.product(),
-    bookingDate: faker.date.future(),
+    bookingDate: faker.date.future().getTime() / 1000,
     customer: {
         name: faker.name.firstName(),
         email: faker.internet.email(),

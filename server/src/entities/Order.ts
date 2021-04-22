@@ -4,7 +4,7 @@ import { ICustomer } from './ICustomer';
 export class Order {
     readonly uid: string;
     title: string;
-    bookingDate: Date;
+    bookingDate: number;
     address: IAddress;
     customer: ICustomer;
 
