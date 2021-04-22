@@ -36,5 +36,14 @@ describe('#Controller | Load Orders', () => {
             const result = await sut.handle();
             expect(result.statusCode).toBe(204);
         });
+
+        it('returns 500 if thow an error ', async () => {
+            const { sut, loadOrdersSpy } = makeSut();
+            jest.spyOn(loadOrdersSpy, 'execute').mockImplementationOnce(() => {
+                throw new Error();
+            });
+            const result = await sut.handle();
+            expect(result.statusCode).toBe(500);
+        });
     });
 });
