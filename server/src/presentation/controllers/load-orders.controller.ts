@@ -1,5 +1,5 @@
 import { LoadOrders } from '@/usecases';
-import { HttpResponse, noContent, ok } from '../helpers';
+import { HttpResponse, noContent, ok, serverError } from '../helpers';
 import { Controller } from './controller-protocol';
 
 export class LoadOrdersController implements Controller {
@@ -9,6 +9,8 @@ export class LoadOrdersController implements Controller {
         try {
             const orders = await this.loadOrders.execute();
             return orders.length ? ok(orders) : noContent();
-        } catch (error) {}
+        } catch (error) {
+            return serverError(error);
+        }
     }
 }
