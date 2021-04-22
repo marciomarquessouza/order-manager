@@ -1,4 +1,3 @@
-import { Order } from '@/entities/Order';
 import { LoadOrdersSpy } from '@/usecases/load-orders/mock/mock-load-orders.usecase';
 import { LoadOrdersController } from '../load-orders.controller';
 
