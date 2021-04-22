@@ -52,5 +52,15 @@ describe('#Controller | Update Order', () => {
             const response = await sut.handle(request);
             expect(response.statusCode).toBe(200);
         });
+
+        it('returns 500 in error case', async () => {
+            const { sut, updateOrderSpy } = makeSut();
+            const request = mockUpdateOrderParams();
+            jest.spyOn(updateOrderSpy, 'execute').mockImplementationOnce(() => {
+                throw new Error();
+            });
+            const result = await sut.handle(request);
+            expect(result.statusCode).toBe(500);
+        });
     });
 });
