@@ -1,5 +1,5 @@
 import { UpdateOrder } from '@/usecases';
-import { badRequest, HttpResponse } from '../helpers';
+import { badRequest, HttpResponse, ok } from '../helpers';
 import { Validation } from '../validation/validation.protocol';
 import { Controller } from './controller-protocol';
 
@@ -24,6 +24,7 @@ export class UpdateOrderController implements Controller<UpdateOrderController.R
                 return badRequest(error);
             }
             await this.updateOrder.execute(request);
+            return ok();
         } catch (error) {}
     }
 }
