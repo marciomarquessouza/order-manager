@@ -15,7 +15,7 @@ export class AuthByTokenMiddleware implements Middleware<AuthByTokenMiddleware.r
         try {
             const { authorization } = request;
 
-            if (authorization) {
+            if (authorization && authorization.startsWith('Bearer ')) {
             } else {
                 return forbiden();
             }
