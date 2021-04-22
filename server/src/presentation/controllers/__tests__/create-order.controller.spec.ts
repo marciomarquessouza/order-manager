@@ -1,5 +1,4 @@
 import { ValidationSpy } from '@/presentation/validation/mock/mock-validation';
-import { CreateOrder } from '@/usecases';
 import {
     CreateOrderSpy,
     mockCreateOrderParams,
@@ -52,6 +51,18 @@ describe('#Controller | Create Order', () => {
             const request = mockCreateOrderParams();
             const response = await sut.handle(request);
             expect(response.statusCode).toBe(201);
+        });
+
+        describe('when throw an Error', () => {
+            it('returns 500', async () => {
+                const { sut, createOrderSpy } = makeSut();
+                const request = mockCreateOrderParams();
+                jest.spyOn(createOrderSpy, 'execute').mockImplementationOnce(() => {
+                    throw new Error();
+                });
+                const response = await sut.handle(request);
+                expect(response.statusCode).toBe(500);
+            });
         });
     });
 });
