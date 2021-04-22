@@ -22,5 +22,11 @@ describe('#Middleware | Authorizarion', () => {
             const response = await sut.handle({});
             expect(response.statusCode).toBe(403);
         });
+
+        it('returns 403 when the authorization was sent without the bearer token', async () => {
+            const { sut } = makeSut();
+            const response = await sut.handle({ authorization: 'token' });
+            expect(response.statusCode).toBe(403);
+        });
     });
 });
