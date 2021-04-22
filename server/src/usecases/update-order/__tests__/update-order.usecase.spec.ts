@@ -25,7 +25,7 @@ describe('#Use Case | Update Order', () => {
         it('calls the update method from repository with appropriate params ', async () => {
             const { sut, updateOrderRepositorySpy } = makeSut();
             const orderParams = mockUpdateOrderParams();
-            await sut.execute(orderParams, orderId);
+            await sut.execute(orderParams);
             expect(updateOrderRepositorySpy.params).toBe(orderParams);
         });
 
@@ -35,7 +35,7 @@ describe('#Use Case | Update Order', () => {
                 jest.spyOn(updateOrderRepositorySpy, 'update').mockImplementationOnce(() => {
                     throw new Error();
                 });
-                const promise = sut.execute(mockUpdateOrderParams(), orderId);
+                const promise = sut.execute(mockUpdateOrderParams());
                 await expect(promise).rejects.toThrow();
             });
         });
