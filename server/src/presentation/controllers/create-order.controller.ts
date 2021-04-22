@@ -1,0 +1,22 @@
+import { Order } from '@/entities/Order';
+import { CreateOrder } from '@/usecases';
+import { HttpResponse } from '../helpers';
+import { Validation } from '../validation/validation.protocol';
+import { Controller } from './controller-protocol';
+
+export namespace CreateOrderController {
+    export type Request = Omit<Order, 'uid'>;
+}
+
+export class CreateOrderController implements Controller<CreateOrderController.Request> {
+    constructor(
+        private readonly createOrder: CreateOrder,
+        private readonly validation: Validation,
+    ) {}
+
+    handle(request: CreateOrderController.Request): Promise<HttpResponse> {
+        try {
+            this.validation.validate(request);
+        } catch (error) {}
+    }
+}
