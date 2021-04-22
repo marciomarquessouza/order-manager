@@ -4,7 +4,7 @@ import Schema from 'validate';
 
 export class CreateOrderValidatorAdapter implements Validation<CreateOrderController.Request> {
     validate(input: CreateOrderController.Request): Error {
-        const orderSchemaValidation = new Schema({
+        const createOrderSchemaValidation = new Schema({
             title: {
                 type: String,
                 required: true,
@@ -48,7 +48,7 @@ export class CreateOrderValidatorAdapter implements Validation<CreateOrderContro
             },
         });
 
-        const errors = orderSchemaValidation.validate(input);
+        const errors = createOrderSchemaValidation.validate(input);
         if (errors.length) {
             return Error(`Incorrect field: ${errors[0].path}`);
         }
