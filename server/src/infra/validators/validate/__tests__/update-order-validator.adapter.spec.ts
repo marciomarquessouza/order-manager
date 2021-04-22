@@ -13,5 +13,12 @@ describe('#Infra - Validate | Update Order', () => {
             const response = sut.validate(params);
             expect(response).toBe(null);
         });
+
+        it('returns an error when the params contain some invalid field', () => {
+            const sut = makeSut();
+            const params = mockUpdateOrderParams();
+            const response = sut.validate({ ...params, title: '' });
+            expect(response).toBeInstanceOf(Error);
+        });
     });
 });
