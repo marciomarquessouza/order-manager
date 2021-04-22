@@ -1,6 +1,6 @@
 import { Order } from '@/entities/Order';
 import { CreateOrder } from '@/usecases';
-import { HttpResponse } from '../helpers';
+import { badRequest, HttpResponse } from '../helpers';
 import { Validation } from '../validation/validation.protocol';
 import { Controller } from './controller-protocol';
 
@@ -14,9 +14,12 @@ export class CreateOrderController implements Controller<CreateOrderController.R
         private readonly validation: Validation,
     ) {}
 
-    handle(request: CreateOrderController.Request): Promise<HttpResponse> {
+    async handle(request: CreateOrderController.Request): Promise<HttpResponse> {
         try {
-            this.validation.validate(request);
+            const error = this.validation.validate(request);
+            if (error) {
+                return badRequest(error);
+            }
         } catch (error) {}
     }
 }
