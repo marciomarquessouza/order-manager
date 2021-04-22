@@ -23,6 +23,7 @@ export class UpdateOrderController implements Controller<UpdateOrderController.R
             if (error) {
                 return badRequest(error);
             }
+            await this.updateOrder.execute(request);
         } catch (error) {}
     }
 }
