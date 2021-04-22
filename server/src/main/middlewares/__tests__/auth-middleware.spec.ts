@@ -34,5 +34,11 @@ describe('#Middleware | Authorizarion', () => {
             await sut.handle({ authorization: 'Bearer my_token' });
             expect(authByTokenSpy.params).toEqual({ token: 'my_token' });
         });
+
+        it('returns 200 when the token is valid', async () => {
+            const { sut } = makeSut();
+            const response = await sut.handle({ authorization: 'Bearer my_valid_token' });
+            expect(response.statusCode).toBe(200);
+        });
     });
 });
