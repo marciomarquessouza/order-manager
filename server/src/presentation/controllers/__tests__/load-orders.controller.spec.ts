@@ -24,10 +24,17 @@ describe('#Controller | Load Orders', () => {
             expect(loadOrdersSpy.result).not.toBeUndefined();
         });
 
-        it('return 200 on success', async () => {
+        it('returns 200 on success', async () => {
             const { sut } = makeSut();
             const result = await sut.handle();
             expect(result.statusCode).toBe(200);
+        });
+
+        it('returns 204 in case of no contents', async () => {
+            const { sut, loadOrdersSpy } = makeSut();
+            loadOrdersSpy.result = [];
+            const result = await sut.handle();
+            expect(result.statusCode).toBe(204);
         });
     });
 });
