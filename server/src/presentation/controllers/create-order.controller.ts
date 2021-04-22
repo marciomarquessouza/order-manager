@@ -17,9 +17,12 @@ export class CreateOrderController implements Controller<CreateOrderController.R
     async handle(request: CreateOrderController.Request): Promise<HttpResponse> {
         try {
             const error = this.validation.validate(request);
+
             if (error) {
                 return badRequest(error);
             }
+
+            await this.createOrder.execute(request);
         } catch (error) {}
     }
 }
