@@ -31,5 +31,13 @@ describe('#Controller | Create Order', () => {
             await sut.handle(request);
             expect(validationSpy.input).toBe(request);
         });
+
+        it('returns 400 if exists a validation error', async () => {
+            const { sut, validationSpy } = makeSut();
+            const request = mockCreateOrderParams();
+            validationSpy.error = new Error();
+            const response = await sut.handle(request);
+            expect(response.statusCode).toBe(400);
+        });
     });
 });
