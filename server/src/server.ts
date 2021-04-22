@@ -1,11 +1,13 @@
-export class SettingsTests {
-  constructor(private attributte1: string) {}
+import { app } from '@main/config';
+import { FirebaseHelper } from '@infra/database';
+import { config } from 'dotenv';
 
-  method01(justNumber: number): void {
-    console.log(`This is just a number ${justNumber}`);
-  }
-  method02(): string {
-    console.log("Here   ");
-    return this.attributte1;
-  }
-}
+const firebaseServiceAccount = require('../serviceAccount.json');
+
+config();
+
+FirebaseHelper.initialize(firebaseServiceAccount);
+
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
