@@ -1,10 +1,11 @@
 export namespace UpdateOrder {
     export type Params = {
+        uid: string;
         title?: string;
-        bookingDate?: Date;
+        bookingDate?: number;
     };
 }
 
 export interface UpdateOrder {
-    execute(data: UpdateOrder.Params, id: string): Promise<void>;
+    execute(data: UpdateOrder.Params): Promise<void>;
 }

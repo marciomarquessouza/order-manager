@@ -5,5 +5,5 @@ export namespace UpdateOrderRepository {
 }
 
 export interface UpdateOrderRepository {
-    update(data: UpdateOrderRepository.Params, id: string): Promise<void>;
+    update(data: UpdateOrderRepository.Params): Promise<void>;
 }

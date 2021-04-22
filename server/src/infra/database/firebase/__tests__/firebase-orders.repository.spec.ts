@@ -55,8 +55,8 @@ describe('#Firebase Database | Create Order', () => {
             it('call the firebase update method', async () => {
                 const sut = makeSut();
                 const updateOrderParams = mockUpdateOrderParams();
-                await sut.update(updateOrderParams, uid);
-                expect(updateSpy).toHaveBeenCalledWith({ ...updateOrderParams });
+                await sut.update(updateOrderParams);
+                expect(updateSpy).toHaveBeenCalledWith(updateOrderParams);
             });
         });
     });
