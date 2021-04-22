@@ -46,5 +46,12 @@ describe('#Controller | Create Order', () => {
             await sut.handle(request);
             expect(createOrderSpy.params).toBe(request);
         });
+
+        it('returns 201 in success case', async () => {
+            const { sut } = makeSut();
+            const request = mockCreateOrderParams();
+            const response = await sut.handle(request);
+            expect(response.statusCode).toBe(201);
+        });
     });
 });
