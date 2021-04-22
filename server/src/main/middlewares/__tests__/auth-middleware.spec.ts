@@ -40,5 +40,12 @@ describe('#Middleware | Authorizarion', () => {
             const response = await sut.handle({ authorization: 'Bearer my_valid_token' });
             expect(response.statusCode).toBe(200);
         });
+
+        it('returns 403 when the token is invalid', async () => {
+            const { sut, authByTokenSpy } = makeSut();
+            authByTokenSpy.result = null;
+            const response = await sut.handle({ authorization: 'Bearer my_valid_token' });
+            expect(response.statusCode).toBe(403);
+        });
     });
 });
