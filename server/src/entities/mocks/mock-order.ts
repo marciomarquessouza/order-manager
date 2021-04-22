@@ -17,6 +17,9 @@ const params = {
     },
 };
 
-export const mockOrder = (): Order => new Order(params);
+const orderA = { uid: faker.datatype.uuid(), ...params };
+const orderB = { uid: faker.datatype.uuid(), ...params };
 
-export const mockOrders = (): Order[] => [new Order(params), new Order(params)];
+export const mockOrder = (): Order => orderA;
+
+export const mockOrders = (): Order[] => [orderA, orderB];
