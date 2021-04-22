@@ -16,3 +16,11 @@ export const mockCreateOrderParams = (): CreateOrder.Params => ({
         zip: faker.address.zipCode(),
     },
 });
+
+export class CreateOrderSpy implements CreateOrder {
+    params: CreateOrder.Params;
+
+    async execute(order: CreateOrder.Params): Promise<void> {
+        this.params = order;
+    }
+}
