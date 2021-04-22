@@ -23,5 +23,11 @@ describe('#Controller | Load Orders', () => {
             await sut.handle();
             expect(loadOrdersSpy.result).not.toBeUndefined();
         });
+
+        it('return 200 on success', async () => {
+            const { sut } = makeSut();
+            const result = await sut.handle();
+            expect(result.statusCode).toBe(200);
+        });
     });
 });
