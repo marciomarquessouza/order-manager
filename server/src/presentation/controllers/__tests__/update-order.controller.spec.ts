@@ -45,5 +45,12 @@ describe('#Controller | Update Order', () => {
             await sut.handle(request);
             expect(updateOrderSpy.params).toBe(request);
         });
+
+        it('returns 200 in success case', async () => {
+            const { sut } = makeSut();
+            const request = mockUpdateOrderParams();
+            const response = await sut.handle(request);
+            expect(response.statusCode).toBe(200);
+        });
     });
 });
