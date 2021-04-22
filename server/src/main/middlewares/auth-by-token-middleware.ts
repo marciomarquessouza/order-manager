@@ -1,0 +1,24 @@
+import { AuthByToken } from '@/presentation/auth/auth-by-token.protocol';
+import { forbiden, HttpResponse } from '@/presentation/helpers';
+import { Middleware } from './middleware.protocol';
+
+export namespace AuthByTokenMiddleware {
+    export type request = {
+        authorization?: string;
+    };
+}
+
+export class AuthByTokenMiddleware implements Middleware<AuthByTokenMiddleware.request> {
+    constructor(private readonly authByToken: AuthByToken) {}
+
+    async handle(request: AuthByTokenMiddleware.request): Promise<HttpResponse> {
+        try {
+            const { authorization } = request;
+
+            if (authorization) {
+            } else {
+                return forbiden();
+            }
+        } catch (error) {}
+    }
+}
