@@ -1,5 +1,5 @@
 import { AuthByToken } from '@/presentation/auth/auth-by-token.protocol';
-import { forbiden, HttpResponse } from '@/presentation/helpers';
+import { forbiden, HttpResponse, ok } from '@/presentation/helpers';
 import { Middleware } from './middleware.protocol';
 
 export namespace AuthByTokenMiddleware {
@@ -18,6 +18,9 @@ export class AuthByTokenMiddleware implements Middleware<AuthByTokenMiddleware.r
             if (authorization && authorization.startsWith('Bearer ')) {
                 const token = authorization.replace(/^Bearer\s/, '');
                 const userId = await this.authByToken.auth({ token });
+                if (userId) {
+                    return ok({ userId });
+                }
             } else {
                 return forbiden();
             }
