@@ -3,7 +3,7 @@ import { Order } from '../Order';
 
 const params = {
     title: faker.commerce.product(),
-    bookingDate: faker.date.future(),
+    bookingDate: faker.date.future().getTime() / 1000,
     customer: {
         name: faker.name.firstName(),
         email: faker.internet.email(),
@@ -17,8 +17,8 @@ const params = {
     },
 };
 
-const orderA = { uid: faker.datatype.uuid(), ...params };
-const orderB = { uid: faker.datatype.uuid(), ...params };
+const orderA: Order = { uid: faker.datatype.uuid(), ...params };
+const orderB: Order = { uid: faker.datatype.uuid(), ...params };
 
 export const mockOrder = (): Order => orderA;
 
