@@ -3,7 +3,7 @@ import { Middleware } from './middleware.protocol';
 
 export const middlewareAdapter = (middleware: Middleware) => {
     return async (req: Request, res: Response, next: NextFunction) => {
-        const request = { ...(req.header || {}) };
+        const request = { ...(req.headers || {}) };
         const response = await middleware.handle(request);
         if (response.statusCode === 200) {
             Object.assign(req, response.body);
