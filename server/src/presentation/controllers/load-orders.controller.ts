@@ -1,5 +1,5 @@
 import { LoadOrders } from '@/usecases';
-import { HttpResponse } from '../helpers';
+import { HttpResponse, ok } from '../helpers';
 import { Controller } from './controller-protocol';
 
 export class LoadOrdersController implements Controller {
@@ -7,7 +7,8 @@ export class LoadOrdersController implements Controller {
 
     async handle(): Promise<HttpResponse> {
         try {
-            await this.loadOrders.execute();
+            const orders = await this.loadOrders.execute();
+            return ok(orders);
         } catch (error) {}
     }
 }
