@@ -47,5 +47,16 @@ describe('#Middleware | Authorizarion', () => {
             const response = await sut.handle({ authorization: 'Bearer my_valid_token' });
             expect(response.statusCode).toBe(403);
         });
+
+        describe('when thow an error', () => {
+            it('returns 500', async () => {
+                const { sut, authByTokenSpy } = makeSut();
+                jest.spyOn(authByTokenSpy, 'auth').mockImplementationOnce(() => {
+                    throw new Error();
+                });
+                const response = await sut.handle({ authorization: 'Bearer my_valid_token' });
+                expect(response.statusCode).toBe(500);
+            });
+        });
     });
 });
