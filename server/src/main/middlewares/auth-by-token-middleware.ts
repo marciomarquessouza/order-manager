@@ -1,5 +1,5 @@
 import { AuthByToken } from '@/presentation/auth/auth-by-token.protocol';
-import { forbiden, HttpResponse, ok } from '@/presentation/helpers';
+import { forbiden, HttpResponse, ok, serverError } from '@/presentation/helpers';
 import { Middleware } from './middleware.protocol';
 
 export namespace AuthByTokenMiddleware {
@@ -24,6 +24,8 @@ export class AuthByTokenMiddleware implements Middleware<AuthByTokenMiddleware.r
             }
 
             return forbiden();
-        } catch (error) {}
+        } catch (error) {
+            return serverError(error);
+        }
     }
 }
