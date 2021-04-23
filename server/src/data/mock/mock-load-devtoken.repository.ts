@@ -3,9 +3,9 @@ import { LoadDevTokenRepository } from '../load-devtoken.repository';
 
 export class LoadDevTokenRepositorySpy implements LoadDevTokenRepository {
     params: LoadDevTokenRepository.Params;
-    result: LoadDevTokenRepository.Result = { devToken: 'dev-token' };
+    result: LoadDevTokenRepository.Result = 'dev-token';
 
-    async load(params: LoadDevToken.Params): Promise<LoadDevToken.Result> {
+    async load(params: LoadDevToken.Params): Promise<LoadDevTokenRepository.Result> {
         this.params = params;
         return this.result;
     }
