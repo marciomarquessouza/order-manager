@@ -17,7 +17,7 @@ describe('#Firebase Auth | Load DevToken', () => {
                 const sut = makeSut();
                 const userId = 'USER_ID';
                 const response = await sut.load({ userId });
-                expect(response.devToken).toBe('DEV_TOKEN');
+                expect(response).toBe('DEV_TOKEN');
             });
         });
     });
