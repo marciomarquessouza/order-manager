@@ -2,6 +2,7 @@ import { LoadDevTokenRepositorySpy } from '@/data/mock/mock-load-devtoken.reposi
 import { LoadDevToken } from '../load-dev-token.protocols';
 import { LoadDevTokenUseCase } from '../load-dev-token.usecase';
 import faker from 'faker';
+import { env } from '@/main/config';
 
 type SutTypes = {
     sut: LoadDevToken;
@@ -35,6 +36,16 @@ describe('#Use Case | Load DevToken', () => {
                 const params = { userId: faker.datatype.uuid() };
                 const promise = sut.execute(params);
                 await expect(promise).rejects.toThrow();
+            });
+        });
+
+        describe('when the enviroment is not DEV', () => {
+            it('thows an Unauthorized error', async () => {
+                const { sut } = makeSut();
+                env.app_env = 'PROD';
+                const params = { userId: faker.datatype.uuid() };
+                const promise = sut.execute(params);
+                await expect(promise).rejects.toThrowError('Unauthorized');
             });
         });
     });
