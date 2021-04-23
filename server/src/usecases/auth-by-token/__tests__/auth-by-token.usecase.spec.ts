@@ -25,5 +25,17 @@ describe('#Use Case | Auth By Token', () => {
             await sut.execute(params);
             expect(authByTokenRepositorySpy.params).toBe(params);
         });
+
+        describe('when an unexpected error happens', () => {
+            it('thows a reject error', async () => {
+                const { sut, authByTokenRepositorySpy } = makeSut();
+                jest.spyOn(authByTokenRepositorySpy, 'auth').mockImplementationOnce(() => {
+                    throw new Error();
+                });
+                const params = mockAuthByTokenParams();
+                const promise = sut.execute(params);
+                await expect(promise).rejects.toThrow();
+            });
+        });
     });
 });
