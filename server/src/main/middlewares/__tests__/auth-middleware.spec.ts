@@ -1,4 +1,4 @@
-import { AuthByTokenSpy } from '@/presentation/auth/mock/mock-auth-by-token';
+import { AuthByTokenSpy } from '@/usecases/auth-by-token/mock/mock-auth-by-token-usecase';
 import { AuthByTokenMiddleware } from '../auth-by-token-middleware';
 
 type SutTypes = {
@@ -51,7 +51,7 @@ describe('#Middleware | Authorizarion', () => {
         describe('when thow an error', () => {
             it('returns 500', async () => {
                 const { sut, authByTokenSpy } = makeSut();
-                jest.spyOn(authByTokenSpy, 'auth').mockImplementationOnce(() => {
+                jest.spyOn(authByTokenSpy, 'execute').mockImplementationOnce(() => {
                     throw new Error();
                 });
                 const response = await sut.handle({ authorization: 'Bearer my_valid_token' });
