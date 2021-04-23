@@ -1,5 +1,5 @@
 import { Order } from '@entities/Order';
-import { CreateOrderRepository, LoadOrdersRepository, UpdateOrderRepository } from '@/repositories';
+import { CreateOrderRepository, LoadOrdersRepository, UpdateOrderRepository } from '@/data';
 import { LoadOrders, UpdateOrder } from '@/usecases';
 import { FirebaseHelper } from './firebase-helper';
 

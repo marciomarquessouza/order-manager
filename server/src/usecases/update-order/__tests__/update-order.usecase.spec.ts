@@ -1,8 +1,7 @@
-import { UpdateOrderRepositorySpy } from '@/repositories/mock/mock-update-order.repository';
+import { UpdateOrderRepositorySpy } from '@/data/mock/mock-update-order.repository';
 import { mockUpdateOrderParams } from '../mock/mock-update-order.usecase';
 import { UpdateOrder } from '../update-order.protocols';
 import { UpdateOrderUseCase } from '../update-order.usecase';
-import faker from 'faker';
 
 type SutTypes = {
     sut: UpdateOrder;
@@ -17,8 +16,6 @@ const makeSut = (): SutTypes => {
         updateOrderRepositorySpy,
     };
 };
-
-const orderId = faker.datatype.uuid();
 
 describe('#Use Case | Update Order', () => {
     describe('when the order update use case is called', () => {

@@ -1,4 +1,4 @@
-import { CreateOrderRepository } from '@repositories/create-order.repository';
+import { CreateOrderRepository } from '@/data/create-order.repository';
 
 export class CreateOrderRepositorySpy implements CreateOrderRepository {
     public params: CreateOrderRepository.Params;

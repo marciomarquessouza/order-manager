@@ -1,4 +1,4 @@
-import { UpdateOrderRepository } from '@/repositories/update-order.repository';
+import { UpdateOrderRepository } from '@/data/update-order.repository';
 import { UpdateOrder } from './update-order.protocols';
 
 export class UpdateOrderUseCase implements UpdateOrder {

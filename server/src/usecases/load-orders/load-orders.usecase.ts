@@ -1,4 +1,4 @@
-import { LoadOrdersRepository } from '@/repositories/load-order.repository';
+import { LoadOrdersRepository } from '@/data/load-order.repository';
 import { LoadOrders } from './load-orders.protocols';
 
 export class LoadOrdersUseCase implements LoadOrders {

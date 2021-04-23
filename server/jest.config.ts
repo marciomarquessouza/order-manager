@@ -10,7 +10,7 @@ export default {
     moduleNameMapper: {
         '@/(.*)': '<rootDir>/src/$1',
         '@entities/(.*)': '<rootDir>/src/entities/$1',
-        '@repositories/(.*)': '<rootDir>/src/repositories/$1',
+        '@data/(.*)': '<rootDir>/src/data/$1',
         '@presenters/(.*)': '<rootDir>/src/presenters/$1',
         '@infra/(.*)': '<rootDir>/src/infra/$1',
         '@usecases/(.*)': '<rootDir>/src/usecases/$1',

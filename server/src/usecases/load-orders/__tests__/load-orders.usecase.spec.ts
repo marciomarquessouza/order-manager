@@ -1,4 +1,4 @@
-import { LoadOrdersRepositorySpy } from '@/repositories/mock/mock-load-orders.repository';
+import { LoadOrdersRepositorySpy } from '@/data/mock/mock-load-orders.repository';
 import { LoadOrders } from '../load-orders.protocols';
 import { LoadOrdersUseCase } from '../load-orders.usecase';
 

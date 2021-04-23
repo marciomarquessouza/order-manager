@@ -1,6 +1,6 @@
 import { CreateOrderUseCase } from '../create-order.usecase';
 import { CreateOrder } from '../create-order.protocols';
-import { CreateOrderRepositorySpy } from '@repositories/mock/mock-create-order.repository';
+import { CreateOrderRepositorySpy } from '@/data/mock/mock-create-order.repository';
 import { mockCreateOrderParams } from '../mock/mock-create-order.usecase';
 
 type SutTypes = {

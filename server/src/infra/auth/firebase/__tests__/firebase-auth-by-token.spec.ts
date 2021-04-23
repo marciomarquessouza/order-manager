@@ -1,7 +1,7 @@
 import { FirebaseAuthByToken } from '../firebase-auth-by-token';
 
 jest.mock('../firebase-helper', () => ({
-    FirebaseHelper: {
+    FirebaseAuthHelper: {
         verifyIdToken: jest.fn().mockResolvedValue({
             uid: 'USER_ID',
         }),

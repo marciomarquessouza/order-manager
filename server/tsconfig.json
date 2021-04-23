@@ -11,7 +11,7 @@
         "paths": {
             "@/*": ["*"],
             "@entities/*": ["entities/*"],
-            "@repositories/*": ["repositories/*"],
+            "@data/*": ["data/*"],
             "@presenters/*": ["presenters/*"],
             "@infra/*": ["infra/*"],
             "@usecases/*": ["usecases/*"],
