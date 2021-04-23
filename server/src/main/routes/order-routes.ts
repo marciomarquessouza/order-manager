@@ -1,7 +1,10 @@
 import { Router } from 'express';
-import { makeUpdateOrderController } from '../factories';
-import { makeAuthByTokenMiddleware } from '../factories/auth-by-token-middleware.factory';
-import { makeCreateOrderController } from '../factories/create-order-controller.factory';
+import {
+    makeCreateOrderController,
+    makeLoadOrdersController,
+    makeUpdateOrderController,
+    makeAuthByTokenMiddleware,
+} from '../factories';
 import { middlewareAdapter } from '../middlewares/middleware.adapter';
 import { routeAdapter } from './routes.adapter';
 
@@ -17,4 +20,6 @@ export const orderRoutes = (router: Router): void => {
         middlewareAdapter(makeAuthByTokenMiddleware()),
         routeAdapter(makeUpdateOrderController()),
     );
+
+    router.get('/orders', routeAdapter(makeLoadOrdersController()));
 };
