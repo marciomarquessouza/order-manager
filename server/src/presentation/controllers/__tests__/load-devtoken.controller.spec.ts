@@ -25,9 +25,10 @@ describe('#Controller | Load DevToken', () => {
             expect(loadDevTokenSpy.params).toBe(params);
         });
 
-        it.skip('returns 200 on success', async () => {
+        it('returns 200 on success', async () => {
             const { sut } = makeSut();
-            const result = await sut.handle();
+            const params = { userId: faker.datatype.uuid() };
+            const result = await sut.handle(params);
             expect(result.statusCode).toBe(200);
         });
 
