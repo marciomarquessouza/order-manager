@@ -1,5 +1,5 @@
 import { LoadDevToken } from '@/usecases/load-devtoken/load-dev-token.protocols';
-import { HttpResponse } from '../helpers';
+import { HttpResponse, ok } from '../helpers';
 import { Controller } from './controller-protocol';
 
 export class LoadDevTokenController implements Controller<LoadDevToken.Params> {
@@ -7,7 +7,8 @@ export class LoadDevTokenController implements Controller<LoadDevToken.Params> {
 
     async handle(request: LoadDevToken.Params): Promise<HttpResponse> {
         try {
-            await this.loadDevToken.execute(request);
+            const response = await this.loadDevToken.execute(request);
+            return ok(response);
         } catch (error) {}
     }
 }
