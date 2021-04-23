@@ -1,5 +1,5 @@
 import { LoadDevToken } from '@/usecases/load-devtoken/load-dev-token.protocols';
-import { HttpResponse, ok } from '../helpers';
+import { HttpResponse, ok, unauthorized } from '../helpers';
 import { Controller } from './controller-protocol';
 
 export class LoadDevTokenController implements Controller<LoadDevToken.Params> {
@@ -9,6 +9,10 @@ export class LoadDevTokenController implements Controller<LoadDevToken.Params> {
         try {
             const response = await this.loadDevToken.execute(request);
             return ok(response);
-        } catch (error) {}
+        } catch (error) {
+            if (error.message === 'Unauthorized') {
+                return unauthorized();
+            }
+        }
     }
 }
