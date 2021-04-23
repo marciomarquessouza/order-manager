@@ -12,10 +12,10 @@ const makeSut = (): FirebaseAuthByToken => {
     return new FirebaseAuthByToken();
 };
 
-describe('#Firebase Author | Auth By Token', () => {
+describe('#Firebase Auth | Auth By Token', () => {
     describe('auth()', () => {
-        describe('when the middleware ask to check an access token', () => {
-            it('calls the verifyIdToken command from firebase properly', async () => {
+        describe('when the access token is requested', () => {
+            it('calls the verifyIdToken method from firebase properly', async () => {
                 const sut = makeSut();
                 const token = 'MY_TOKEN';
                 const response = await sut.auth({ token });
