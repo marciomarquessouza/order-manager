@@ -21,5 +21,9 @@ export const orderRoutes = (router: Router): void => {
         routeAdapter(makeUpdateOrderController()),
     );
 
-    router.get('/orders', routeAdapter(makeLoadOrdersController()));
+    router.get(
+        '/orders',
+        middlewareAdapter(makeAuthByTokenMiddleware()),
+        routeAdapter(makeLoadOrdersController()),
+    );
 };
