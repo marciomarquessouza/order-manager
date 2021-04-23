@@ -19,7 +19,13 @@ const makeSut = (): SutTypes => {
     };
 };
 
+const currentEnv = env.app_env;
+
 describe('#Controller | Load DevToken', () => {
+    beforeEach(() => {
+        env.app_env = currentEnv;
+    });
+
     describe('when the flow to load DevToken is called', () => {
         it('calls the load DevToken Use Case', async () => {
             const { sut, loadDevTokenRepositorySpy } = makeSut();
@@ -35,6 +41,14 @@ describe('#Controller | Load DevToken', () => {
             expect(result.statusCode).toBe(200);
         });
 
+        it('returns 401 when the environment is not DEV', async () => {
+            const { sut } = makeSut();
+            env.app_env = 'PROD';
+            const params = { userId: faker.datatype.uuid() };
+            const result = await sut.handle(params);
+            expect(result.statusCode).toBe(401);
+        });
+
         it('returns 500 if thow an error ', async () => {
             const { sut, loadDevTokenRepositorySpy } = makeSut();
             jest.spyOn(loadDevTokenRepositorySpy, 'load').mockImplementationOnce(() => {
@@ -43,14 +57,6 @@ describe('#Controller | Load DevToken', () => {
             const params = { userId: faker.datatype.uuid() };
             const result = await sut.handle(params);
             expect(result.statusCode).toBe(500);
-        });
-
-        it('returns 401 when the environment is not DEV', async () => {
-            const { sut } = makeSut();
-            env.app_env = 'PROD';
-            const params = { userId: faker.datatype.uuid() };
-            const result = await sut.handle(params);
-            expect(result.statusCode).toBe(401);
         });
     });
 });

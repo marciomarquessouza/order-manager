@@ -18,7 +18,13 @@ const makeSut = (): SutTypes => {
     };
 };
 
+const currentEnv = env.app_env;
+
 describe('#Use Case | Load DevToken', () => {
+    beforeEach(() => {
+        env.app_env = currentEnv;
+    });
+
     describe('when devToken is requested', () => {
         it('calls the loadDevToken method from repository properly', async () => {
             const { sut, loadDevTokenRepositorySpy } = makeSut();
