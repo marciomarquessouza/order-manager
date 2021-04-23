@@ -26,8 +26,8 @@ describe('#Use Case | Create Order', () => {
             expect(createOrderRepositorySpy.params).toBe(orderParams);
         });
 
-        describe('when CreateOrderRepository throws an error', () => {
-            it('thows a reject error as well', async () => {
+        describe('when an unexpected error happens', () => {
+            it('thows a reject error', async () => {
                 const { sut, createOrderRepositorySpy } = makeSut();
                 jest.spyOn(createOrderRepositorySpy, 'create').mockImplementationOnce(() => {
                     throw new Error();
