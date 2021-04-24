@@ -6,5 +6,5 @@ export namespace AuthByTokenRepository {
 }
 
 export interface AuthByTokenRepository {
-    auth(data: AuthByToken.Params): Promise<AuthByToken.Result>;
+    auth(data: AuthByTokenRepository.Params): Promise<AuthByTokenRepository.Result>;
 }

@@ -1,6 +1,5 @@
 import { Order } from '@entities/Order';
 import { CreateOrderRepository, LoadOrdersRepository, UpdateOrderRepository } from '@/data';
-import { LoadOrders, UpdateOrder } from '@/usecases';
 import { FirebaseHelper } from './firebase-helper';
 
 export class FirebaseOrderRepository
@@ -11,7 +10,7 @@ export class FirebaseOrderRepository
         await orderCollection.doc(uid).set({ uid, ...data });
     }
 
-    async loadAll(): Promise<LoadOrders.Result> {
+    async loadAll(): Promise<LoadOrdersRepository.Result> {
         const orderCollection = FirebaseHelper.getCollection('orders');
         const result = await orderCollection.get();
         if (result.empty) {
@@ -21,7 +20,7 @@ export class FirebaseOrderRepository
         return orders;
     }
 
-    async update(data: UpdateOrder.Params): Promise<void> {
+    async update(data: UpdateOrderRepository.Params): Promise<void> {
         const orderCollection = FirebaseHelper.getCollection('orders');
         await orderCollection.doc(data.uid).update(data);
     }
