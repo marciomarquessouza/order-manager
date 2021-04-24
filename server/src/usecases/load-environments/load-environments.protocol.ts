@@ -1,9 +1,9 @@
 export namespace LoadEnvironments {
     export type Result = {
-        [name: string]: string;
+        [name: string]: string | number | boolean;
     };
 }
 
 export interface LoadEnvironments {
-    list(): LoadEnvironments.Result;
+    execute(): LoadEnvironments.Result;
 }
