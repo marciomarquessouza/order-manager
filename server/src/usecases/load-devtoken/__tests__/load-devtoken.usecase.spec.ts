@@ -2,29 +2,26 @@ import { LoadDevTokenRepositorySpy } from '@/data/mock/mock-load-devtoken.reposi
 import { LoadDevToken } from '../load-dev-token.protocols';
 import { LoadDevTokenUseCase } from '../load-dev-token.usecase';
 import faker from 'faker';
-import { env } from '@/main/config';
+import { CheckEnvironmentSpy } from '@/data/mock/mock-check-environment.protocol';
 
 type SutTypes = {
     sut: LoadDevToken;
     loadDevTokenRepositorySpy: LoadDevTokenRepositorySpy;
+    checkEnvironmentSpy: CheckEnvironmentSpy;
 };
 
 const makeSut = (): SutTypes => {
     const loadDevTokenRepositorySpy = new LoadDevTokenRepositorySpy();
-    const sut = new LoadDevTokenUseCase(loadDevTokenRepositorySpy);
+    const checkEnvironmentSpy = new CheckEnvironmentSpy();
+    const sut = new LoadDevTokenUseCase(loadDevTokenRepositorySpy, checkEnvironmentSpy);
     return {
         sut,
         loadDevTokenRepositorySpy,
+        checkEnvironmentSpy,
     };
 };
 
-const currentEnv = env.app_env;
-
 describe('#Use Case | Load DevToken', () => {
-    beforeEach(() => {
-        env.app_env = currentEnv;
-    });
-
     describe('when devToken is requested', () => {
         it('calls the loadDevToken method from repository properly', async () => {
             const { sut, loadDevTokenRepositorySpy } = makeSut();
@@ -47,8 +44,8 @@ describe('#Use Case | Load DevToken', () => {
 
         describe('when the enviroment is not DEV', () => {
             it('thows an Unauthorized error', async () => {
-                const { sut } = makeSut();
-                env.app_env = 'PROD';
+                const { sut, checkEnvironmentSpy } = makeSut();
+                checkEnvironmentSpy.result = { envName: 'PROD' };
                 const params = { userId: faker.datatype.uuid() };
                 const promise = sut.execute(params);
                 await expect(promise).rejects.toThrowError('Unauthorized');

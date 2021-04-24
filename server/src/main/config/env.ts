@@ -1,9 +1,10 @@
-import dotenv from 'dotenv';
+import { DotEnvEnvironment } from '@/infra/env';
 
-dotenv.config();
+const config = new DotEnvEnvironment();
+const environments = config.list();
 
 export const env = {
-    app_env: process.env.APP_ENV,
-    port: process.env.PORT,
-    api_key: process.env.API_KEY,
+    app_env: environments['APP_ENV'] || 'DEV',
+    port: environments['PORT'] || 5001,
+    api_key: environments['API_KEY'],
 };

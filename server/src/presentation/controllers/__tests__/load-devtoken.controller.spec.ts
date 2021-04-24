@@ -1,31 +1,31 @@
 import { LoadDevTokenRepositorySpy } from '@/data/mock/mock-load-devtoken.repository';
 import { LoadDevTokenUseCase } from '@/usecases/load-devtoken/load-dev-token.usecase';
 import { LoadDevTokenController } from '../load-devtoken.controller';
-import { env } from '@/main/config';
 import faker from 'faker';
+import { CheckEnvironmentSpy } from '@/data/mock/mock-check-environment.protocol';
 
 type SutTypes = {
     sut: LoadDevTokenController;
     loadDevTokenRepositorySpy: LoadDevTokenRepositorySpy;
+    checkEnvironment: CheckEnvironmentSpy;
 };
 
 const makeSut = (): SutTypes => {
     const loadDevTokenRepositorySpy = new LoadDevTokenRepositorySpy();
-    const loadDevTokenUseCase = new LoadDevTokenUseCase(loadDevTokenRepositorySpy);
+    const checkEnvironment = new CheckEnvironmentSpy();
+    const loadDevTokenUseCase = new LoadDevTokenUseCase(
+        loadDevTokenRepositorySpy,
+        checkEnvironment,
+    );
     const sut = new LoadDevTokenController(loadDevTokenUseCase);
     return {
         sut,
         loadDevTokenRepositorySpy,
+        checkEnvironment,
     };
 };
 
-const currentEnv = env.app_env;
-
 describe('#Controller | Load DevToken', () => {
-    beforeEach(() => {
-        env.app_env = currentEnv;
-    });
-
     describe('when the flow to load DevToken is called', () => {
         it('calls the load DevToken Use Case', async () => {
             const { sut, loadDevTokenRepositorySpy } = makeSut();
@@ -42,8 +42,8 @@ describe('#Controller | Load DevToken', () => {
         });
 
         it('returns 401 when the environment is not DEV', async () => {
-            const { sut } = makeSut();
-            env.app_env = 'PROD';
+            const { sut, checkEnvironment } = makeSut();
+            checkEnvironment.result = { envName: 'PROD' };
             const params = { userId: faker.datatype.uuid() };
             const result = await sut.handle(params);
             expect(result.statusCode).toBe(401);

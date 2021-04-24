@@ -8,7 +8,7 @@ export class AuthByTokenRepositorySpy implements AuthByTokenRepository {
         userId: faker.datatype.uuid(),
     };
 
-    auth(data: AuthByToken.Params): AuthByToken.Result {
+    async auth(data: AuthByToken.Params): Promise<AuthByToken.Result> {
         this.params = data;
         return this.result;
     }

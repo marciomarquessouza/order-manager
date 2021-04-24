@@ -1,4 +1,4 @@
-import { AuthByToken } from '@/presentation/auth/auth-by-token.protocol';
+import { AuthByToken } from '@usecases/auth-by-token/auth-by-token.protocols';
 
 export namespace AuthByTokenRepository {
     export type Params = AuthByToken.Params;
@@ -6,5 +6,5 @@ export namespace AuthByTokenRepository {
 }
 
 export interface AuthByTokenRepository {
-    auth(data: AuthByToken.Params): AuthByToken.Result;
+    auth(data: AuthByToken.Params): Promise<AuthByToken.Result>;
 }
