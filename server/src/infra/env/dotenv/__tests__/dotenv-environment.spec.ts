@@ -3,7 +3,7 @@ import { DotEnvEnvironment } from '../dotenv-environment';
 jest.mock('dotenv', () => ({
     config: jest.fn().mockReturnValue({
         parsed: {
-            PORT: '5000',
+            PORT: 5000,
             APP_ENV: 'DEV',
             API_KEY: 'KEY',
         },
@@ -32,7 +32,7 @@ describe('#DotEnv | Environment', () => {
                 const sut = makeSut();
                 const result = sut.list();
                 expect(result).toEqual({
-                    PORT: '5000',
+                    PORT: 5000,
                     APP_ENV: 'DEV',
                     API_KEY: 'KEY',
                 });
