@@ -1,7 +1,7 @@
-import { DotEnvEnvironment } from '@/infra/env';
+import { makeLoadEnvironments } from '@/main/factories/load-environments.factory';
 
-const config = new DotEnvEnvironment();
-const environments = config.list();
+const loadEnvironments = makeLoadEnvironments();
+const environments = loadEnvironments.execute();
 
 export const env = {
     app_env: environments['APP_ENV'] || 'DEV',
