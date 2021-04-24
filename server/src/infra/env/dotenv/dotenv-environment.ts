@@ -1,8 +1,8 @@
-import { CheckEnvironment } from '@/data/check-environment.protocol';
+import { CheckEnvironmentRepository } from '@/data/check-environment.repository';
 import { LoadEnvironmentsRepository } from '@/data/load-environments.repository';
 import { config, DotenvConfigOutput } from 'dotenv';
 
-export class DotEnvEnvironment implements CheckEnvironment, LoadEnvironmentsRepository {
+export class DotEnvEnvironment implements CheckEnvironmentRepository, LoadEnvironmentsRepository {
     private configOutput: DotenvConfigOutput;
 
     constructor() {
@@ -13,7 +13,7 @@ export class DotEnvEnvironment implements CheckEnvironment, LoadEnvironmentsRepo
         return this.configOutput.parsed;
     }
 
-    check(): CheckEnvironment.Result {
+    check(): CheckEnvironmentRepository.Result {
         return {
             envName: process.env.APP_ENV || 'DEV',
         };

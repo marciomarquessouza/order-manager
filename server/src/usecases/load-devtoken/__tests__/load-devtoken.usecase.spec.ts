@@ -2,7 +2,7 @@ import { LoadDevTokenRepositorySpy } from '@/data/mock/mock-load-devtoken.reposi
 import { LoadDevToken } from '../load-dev-token.protocols';
 import { LoadDevTokenUseCase } from '../load-dev-token.usecase';
 import faker from 'faker';
-import { CheckEnvironmentSpy } from '@/data/mock/mock-check-environment.protocol';
+import { CheckEnvironmentSpy } from '@/data/mock/mock-check-environment.repository';
 
 type SutTypes = {
     sut: LoadDevToken;

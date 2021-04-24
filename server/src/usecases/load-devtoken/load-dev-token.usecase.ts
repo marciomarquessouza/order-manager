@@ -1,12 +1,12 @@
 import { LoadDevTokenRepository } from '@/data/load-devtoken.repository';
 import { LoadDevToken } from './load-dev-token.protocols';
 import { UnauthorizedError } from '@/presentation/errors';
-import { CheckEnvironment } from '@/data/check-environment.protocol';
+import { CheckEnvironmentRepository } from '@/data/check-environment.repository';
 
 export class LoadDevTokenUseCase implements LoadDevToken {
     constructor(
         private readonly loadDevTokenRepository: LoadDevTokenRepository,
-        private readonly checkEnvironment: CheckEnvironment,
+        private readonly checkEnvironment: CheckEnvironmentRepository,
     ) {}
 
     async execute(data: LoadDevToken.Params): Promise<LoadDevToken.Result> {
