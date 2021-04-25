@@ -4,7 +4,7 @@ import { Button } from './Button.component';
 import { IButtonProps } from './Button.props';
 
 export default {
-    title: 'Order-Manager/Button',
+    title: 'Order-Manager/Components/Button',
     component: Button,
 } as Meta;
 

@@ -5,7 +5,7 @@ import { IAlertProps } from './Alert.props';
 import { Button } from '../Button';
 
 export default {
-    title: 'Order-Manager/Alert',
+    title: 'Order-Manager/Components/Alert',
     component: Alert,
 } as Meta;
 

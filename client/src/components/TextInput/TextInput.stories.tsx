@@ -4,7 +4,7 @@ import { TextInput } from './TextInput.component';
 import { ITextInputProps } from './TextInput.props';
 
 export default {
-    title: 'Order-Manager/TextInput',
+    title: 'Order-Manager/Components/TextInput',
     component: TextInput,
 } as Meta;
 

@@ -4,7 +4,7 @@ import { DatePicker } from './DatePicker.component';
 import { IDatePickerProps } from './DatePicker.props';
 
 export default {
-    title: 'Order-Manager/DatePicker',
+    title: 'Order-Manager/Components/DatePicker',
     component: DatePicker,
 } as Meta;
 

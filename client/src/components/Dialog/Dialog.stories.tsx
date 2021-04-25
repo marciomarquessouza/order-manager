@@ -6,7 +6,7 @@ import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 
 export default {
-    title: 'Order-Manager/Dialog',
+    title: 'Order-Manager/Components/Dialog',
     component: Dialog,
 } as Meta;
 
