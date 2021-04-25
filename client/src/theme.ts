@@ -14,5 +14,8 @@ export const theme = createMuiTheme({
     },
     typography: {
         fontFamily: "'Kanit', 'Roboto', 'Arial', sans-serif",
+        button: {
+            fontFamily: "'Kanit', 'Roboto', 'Arial', sans-serif",
+        },
     },
 });
