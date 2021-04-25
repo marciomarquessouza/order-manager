@@ -16,7 +16,7 @@ export function Button({
             color={color}
             disabled={disabled}
             variant={variant}
-            onClick={() => undefined}
+            onClick={onClick}
         >
             {children}
         </MaterialButton>
