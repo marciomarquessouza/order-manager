@@ -23,4 +23,12 @@ describe('#Button', () => {
         const { button } = setup();
         expect(button).toBeInTheDocument();
     });
+
+    describe('when the button is clicked', () => {
+        it('calls the onClick method', () => {
+            const { button, onCLickSpy } = setup();
+            fireEvent.click(button);
+            expect(onCLickSpy).toHaveBeenCalledTimes(1);
+        });
+    });
 });
