@@ -20,20 +20,18 @@ export function TextInput({
     };
 
     return (
-        <div className="m-24">
-            <TextField
-                variant={variant}
-                type={type}
-                onChange={handleChange}
-                value={value}
-                label={label}
-                inputProps={{ 'data-testid': testId }}
-                placeholder={placeholder}
-                color="primary"
-                required={required}
-                disabled={disabled}
-                fullWidth={fullWidth}
-            />
-        </div>
+        <TextField
+            variant={variant}
+            type={type}
+            onChange={handleChange}
+            value={value}
+            label={label}
+            inputProps={{ 'data-testid': testId }}
+            placeholder={placeholder}
+            color="primary"
+            required={required}
+            disabled={disabled}
+            fullWidth={fullWidth}
+        />
     );
 }
