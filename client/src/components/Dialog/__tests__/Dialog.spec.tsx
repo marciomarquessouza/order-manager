@@ -12,7 +12,7 @@ const setup = (props: IDialogProps = defaultProps) => {
     return render(<Dialog {...props} />);
 };
 
-describe('#TextInput', () => {
+describe('#Dialog', () => {
     it('renders component properly', () => {
         const { getByTestId } = setup();
         const dialog = getByTestId(/dialog-component/);
