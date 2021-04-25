@@ -5,4 +5,5 @@ export interface ITextInputProps extends ITests {
     onChange: (text: string) => void;
     value: string;
     type?: 'email' | 'password' | 'text';
+    label?: string;
 }
