@@ -20,7 +20,7 @@ export function Avatar({ name, email, onClick, testId = 'avatar-component' }: IA
             </section>
             <aside className="flex-1 max-w-xs">
                 <MaterialAvatar className={classess.avatarStyle}>
-                    {name.substr(0, 1)}
+                    {name.substr(0, 1).toUpperCase()}
                 </MaterialAvatar>
             </aside>
         </div>
