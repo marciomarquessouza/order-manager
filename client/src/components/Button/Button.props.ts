@@ -1,7 +1,8 @@
+import React from 'react';
 import { ITests } from '../../tests/tests.interface';
 
 export interface IButtonProps extends ITests {
-    children: string;
+    children: string | React.ReactNode;
     color?: 'primary' | 'secondary';
     disabled?: boolean;
     variant?: 'outlined' | 'contained' | 'text';

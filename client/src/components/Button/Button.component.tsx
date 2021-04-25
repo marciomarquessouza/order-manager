@@ -23,7 +23,7 @@ export function Button({
             onClick={onClick}
             startIcon={isLoading ? <CircularProgress size={12} /> : null}
         >
-            {children}
+            <span className="font-bold">{children}</span>
         </MaterialButton>
     );
 }
