@@ -13,4 +13,7 @@ const Template: Story<ITextInputProps> = (props) => <TextInput {...props} />;
 export const Email = Template.bind({});
 Email.args = {
     type: 'email',
+    variant: 'outlined',
+    placeholder: 'Add your email',
+    label: 'E-mail',
 };

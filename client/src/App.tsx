@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { TextInput } from './components/TextInput';
 
 function App() {
     return (
@@ -8,9 +9,7 @@ function App() {
             <Typography variant="h5" color="secondary" align="center">
                 Order Manager Client
             </Typography>
-            <Button variant="contained" color="primary">
-                Primary
-            </Button>
+            <TextInput onChange={() => undefined} value="" label="Test" variant="outlined" />
         </main>
     );
 }
