@@ -4,7 +4,7 @@ import MaterialAvatar from '@material-ui/core/Avatar';
 
 export function Avatar({ name, email, onClick, testId = 'avatar-component' }: IAvatarProps) {
     return (
-        <main data-testid={testId}>
+        <div data-testid={testId} onClick={onClick} onKeyPress={onClick} role="button" tabIndex={0}>
             <section>
                 <p>{name}</p>
                 <p>{email}</p>
@@ -12,6 +12,6 @@ export function Avatar({ name, email, onClick, testId = 'avatar-component' }: IA
             <aside>
                 <MaterialAvatar>{name.substr(0, 1)}</MaterialAvatar>
             </aside>
-        </main>
+        </div>
     );
 }
