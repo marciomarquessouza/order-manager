@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@craco/craco": "^6.1.1",
         "@material-ui/core": "^4.11.3",
         "@material-ui/icons": "^4.11.2",
         "@reduxjs/toolkit": "^1.5.1",
@@ -21,16 +22,13 @@
         "web-vitals": "^1.0.1"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "jest --passWithNoTests --runInBand --no-cache",
-        "test:watch": "react-scripts test",
+        "start": "craco start",
+        "build": "craco build",
+        "test": "craco test --watchAll=false --passWithNoTests --runInBand --no-cache",
+        "test:watch": "craco test",
         "eject": "react-scripts eject",
         "storybook": "start-storybook -p 6006 -s public",
-        "build-storybook": "build-storybook -s public",
-        "css": "postcss ./src/styles/tailwind.css -o ./src/styles/tailwind.generated.css",
-        "prestart": "npx yarn css",
-        "prebuild": "cross-env NODE_ENV=production npx yarn css"
+        "build-storybook": "build-storybook -s public"
     },
     "eslintConfig": {
         "extends": [
@@ -67,10 +65,10 @@
         "@storybook/node-logger": "^6.2.8",
         "@storybook/preset-create-react-app": "^3.1.7",
         "@storybook/react": "^6.2.8",
-        "@tailwindcss/postcss7-compat": "^2.1.0",
+        "@tailwindcss/postcss7-compat": "^2.1.2",
         "@typescript-eslint/eslint-plugin": "^4.22.0",
         "@typescript-eslint/parser": "^4.22.0",
-        "autoprefixer": "^10.2.5",
+        "autoprefixer": "^9",
         "cross-env": "^7.0.3",
         "eslint": "^7.24.0",
         "eslint-config-prettier": "^8.2.0",
@@ -80,9 +78,9 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "husky": "^4.2.5",
         "lint-staged": "^10.5.4",
-        "postcss": "^8.2.12",
+        "postcss": "^7",
         "postcss-cli": "^8.3.1",
         "prettier": "2.2.1",
-        "tailwindcss": "^2.1.2"
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat"
     }
 }
