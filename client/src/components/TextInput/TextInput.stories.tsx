@@ -37,3 +37,12 @@ Text.args = {
     placeholder: 'Add your text here',
     label: 'Field Name',
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+    type: 'text',
+    variant: 'standard',
+    placeholder: 'Add your text here',
+    label: 'Field Name',
+    disabled: true,
+};
