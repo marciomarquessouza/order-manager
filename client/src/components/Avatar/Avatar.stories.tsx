@@ -7,11 +7,7 @@ export default {
     component: Avatar,
 } as Meta;
 
-const Template: Story<IAvatarProps> = (props) => (
-    <div className="m-4">
-        <Avatar {...props} />
-    </div>
-);
+const Template: Story<IAvatarProps> = (props) => <Avatar {...props} />;
 
 export const Default = Template.bind({});
 Default.args = {
