@@ -9,27 +9,21 @@ const defaultProps: IDialogProps = {
 };
 
 const setup = (props: IDialogProps = defaultProps) => {
-    const onCloseSpy = props.onClose;
-    const utils = render(<Dialog {...props} />);
-    const dialog = utils.getByTestId(/dialog-component/);
-    return {
-        dialog,
-        onCloseSpy,
-        ...utils,
-    };
+    return render(<Dialog {...props} />);
 };
 
 describe('#TextInput', () => {
     it('renders component properly', () => {
-        const { dialog } = setup();
+        const { getByTestId } = setup();
+        const dialog = getByTestId(/dialog-component/);
         expect(dialog).toBeInTheDocument();
     });
 
-    // describe('when a new text is entered', () => {
-    //     it('calls the onChange method', () => {
-    //         const { textInput, onChangeSpy } = setup();
-    //         fireEvent.change(textInput, { target: { value: 'new text' } });
-    //         expect(onChangeSpy).toBeCalledWith('new text');
-    //     });
-    // });
+    describe('when the props open is false', () => {
+        it('is not rendered', () => {
+            const { queryByTestId } = setup({ ...defaultProps, open: false });
+            const result = queryByTestId(/dialog-component/);
+            expect(result).toBeNull();
+        });
+    });
 });
