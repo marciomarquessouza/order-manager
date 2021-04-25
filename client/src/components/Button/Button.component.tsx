@@ -7,6 +7,7 @@ export function Button({
     color = 'primary',
     disabled = false,
     variant = 'contained',
+    fullWidth,
     onClick,
     testId = 'button-component',
 }: IButtonProps) {
@@ -16,6 +17,7 @@ export function Button({
             color={color}
             disabled={disabled}
             variant={variant}
+            fullWidth={fullWidth}
             onClick={onClick}
         >
             {children}
