@@ -25,7 +25,7 @@ describe('#TextInput', () => {
     });
 
     describe('when a new text is entered', () => {
-        it('calls the onChange mehotd', () => {
+        it('calls the onChange method', () => {
             const { textInput, onChangeSpy } = setup();
             fireEvent.change(textInput, { target: { value: 'new text' } });
             expect(onChangeSpy).toBeCalledWith('new text');
