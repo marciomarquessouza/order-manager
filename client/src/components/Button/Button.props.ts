@@ -6,5 +6,6 @@ export interface IButtonProps extends ITests {
     disabled?: boolean;
     variant?: 'outlined' | 'contained' | 'text';
     fullWidth?: boolean;
+    isLoading?: boolean;
     onClick: () => void;
 }

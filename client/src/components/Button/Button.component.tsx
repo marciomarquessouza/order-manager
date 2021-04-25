@@ -1,6 +1,7 @@
 import React from 'react';
 import { IButtonProps } from './Button.props';
 import MaterialButton from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export function Button({
     children,
@@ -10,15 +11,17 @@ export function Button({
     fullWidth,
     onClick,
     testId = 'button-component',
+    isLoading = false,
 }: IButtonProps) {
     return (
         <MaterialButton
             data-testid={testId}
             color={color}
-            disabled={disabled}
+            disabled={disabled || isLoading}
             variant={variant}
             fullWidth={fullWidth}
             onClick={onClick}
+            startIcon={isLoading ? <CircularProgress size={12} /> : null}
         >
             {children}
         </MaterialButton>
