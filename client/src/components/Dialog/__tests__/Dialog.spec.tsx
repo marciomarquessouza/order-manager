@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, IDialogProps } from '..';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 const defaultProps: IDialogProps = {
     title: 'test',
