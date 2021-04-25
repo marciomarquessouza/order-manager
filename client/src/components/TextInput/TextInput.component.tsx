@@ -7,9 +7,22 @@ export function TextInput({
     type = 'text',
     onChange,
     value,
+    label,
     testId = 'text-input-component',
 }: ITextInputProps) {
+    const handleChange = (element: React.ChangeEvent<HTMLTextAreaElement>): void => {
+        element.preventDefault();
+        onChange(element.target.value);
+    };
+
     return (
-        <TextField data-testid={testId} variant={variant} type={type} onChange={() => undefined} />
+        <TextField
+            variant={variant}
+            type={type}
+            onChange={handleChange}
+            value={value}
+            label={label}
+            inputProps={{ 'data-testid': testId }}
+        />
     );
 }
