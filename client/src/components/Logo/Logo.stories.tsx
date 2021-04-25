@@ -4,7 +4,7 @@ import { Logo } from './Logo.component';
 import { ILogoProps } from './Logo.props';
 
 export default {
-    title: 'Order-Manager/Logo',
+    title: 'Order-Manager/Components/Logo',
     component: Logo,
 } as Meta;
 
