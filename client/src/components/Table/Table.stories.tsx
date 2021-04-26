@@ -38,6 +38,7 @@ const columns: Column[] = [
 ];
 
 interface Data {
+    code: string;
     title: string;
     booking_date: number;
     address: string;
@@ -51,6 +52,7 @@ function createData(props: Data): Row {
 
 const rows: Row[] = [
     createData({
+        code: 'hKlIKPoZc2xCKGTUKZK2',
         title: 'Test Order 1',
         booking_date: 1561172400000,
         address: 'Wriezener Str. 12',
@@ -59,4 +61,4 @@ const rows: Row[] = [
 ];
 
 export const Default = Template.bind({});
-Default.args = { columns, rows };
+Default.args = { columns, rows, onClick: () => undefined };
