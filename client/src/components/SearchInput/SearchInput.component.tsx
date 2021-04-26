@@ -16,14 +16,14 @@ export function SearchInput({
     return (
         <section className="flex flex-row items-center bg-white m-8 pb-3 pt-1 rounded-full">
             <aside className="flex flex-row mx-2 mt-3 ml-4">
-                <Search fontSize="large" color="disabled" />
+                <Search fontSize="large" color="action" />
             </aside>
             <TextField
                 label="Search"
                 onChange={handleOnChange}
                 value={value}
                 fullWidth={true}
-                color="secondary"
+                color="primary"
                 inputProps={{ 'data-testid': testId }}
             />
             <div className="mx-4" />
