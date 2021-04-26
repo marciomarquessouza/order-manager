@@ -14,7 +14,7 @@ export function SearchInput({
     };
 
     return (
-        <section className="flex flex-row items-center bg-white rounded-full p-1 m-2">
+        <section className="flex flex-1 flex-row items-center bg-white rounded-full p-1 max-h-10">
             <aside className="flex flex-row mx-2">
                 <Search fontSize="small" color="action" />
             </aside>
