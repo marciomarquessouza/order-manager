@@ -15,7 +15,6 @@ const Template: Story<ISearchInputProps> = (props) => {
             style={{
                 background: 'linear-gradient(89.97deg, #3C7257 0.65%, #56A086 99.97%), #C4C4C4',
                 padding: 12,
-                width: '50%',
             }}
         >
             <SearchInput {...props} />
