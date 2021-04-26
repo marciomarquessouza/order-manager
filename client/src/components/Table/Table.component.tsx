@@ -32,7 +32,7 @@ export function Table({ rows, columns, onClick, testId = 'table-component' }: IT
     };
 
     return (
-        <div>
+        <div data-testid={testId}>
             <TableContainer>
                 <MaterialTable stickyHeader aria-label="sticky table">
                     <TableHead>
