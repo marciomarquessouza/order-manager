@@ -1,5 +1,5 @@
 import { Column, Row } from '../';
-import moment from 'moment';
+import { createOrderData } from '../helpers';
 
 const columns: Column[] = [
     {
@@ -9,7 +9,7 @@ const columns: Column[] = [
         minWidth: 170,
     },
     {
-        id: 'booking_date',
+        id: 'bookingDate',
         label: 'Booking Date',
         align: 'left',
         minWidth: 170,
@@ -28,24 +28,11 @@ const columns: Column[] = [
     },
 ];
 
-interface Data {
-    code: string;
-    title: string;
-    booking_date: number;
-    address: string;
-    customer: string;
-}
-
-function createData(props: Data): Row {
-    const formatedDate = moment(1561172400000).format('DD.MM.YYYY');
-    return { ...props, booking_date: formatedDate };
-}
-
 const rows: Row[] = [
-    createData({
+    createOrderData({
         code: 'hKlIKPoZc2xCKGTUKZK2',
         title: 'Test Order 1',
-        booking_date: 1561172400000,
+        bookingDate: 1561172400000,
         address: 'Wriezener Str. 12',
         customer: 'Emad Alam',
     }),
