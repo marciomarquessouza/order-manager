@@ -2,7 +2,6 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { SearchInput } from './SearchInput.component';
 import { ISearchInputProps } from './SearchInput.props';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export default {
     title: 'Order-Manager/Components/SearchInput',
