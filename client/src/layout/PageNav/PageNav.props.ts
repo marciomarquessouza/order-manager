@@ -1,4 +1,4 @@
-export interface IHeaderProps {
+export interface IPageNavProps {
     name: string;
     email: string;
     onClickAvatar: () => void;

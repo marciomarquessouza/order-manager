@@ -1,14 +1,14 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Header } from './Header.component';
-import { IHeaderProps } from './Header.props';
+import { PageNav } from './PageNav.component';
+import { IPageNavProps } from './PageNav.props';
 
 export default {
-    title: 'Order-Manager/Layout/Header',
-    component: Header,
+    title: 'Order-Manager/Layout/PageNav',
+    component: PageNav,
 } as Meta;
 
-const Template: Story<IHeaderProps> = (props) => <Header {...props} />;
+const Template: Story<IPageNavProps> = (props) => <PageNav {...props} />;
 
 export const Standard = Template.bind({});
 Standard.args = {

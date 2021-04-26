@@ -1,9 +1,9 @@
 import React from 'react';
 import { Avatar } from '../../components/Avatar';
 import { Logo } from '../../components/Logo';
-import { IHeaderProps } from './Header.props';
+import { IPageNavProps } from './PageNav.props';
 
-export function Header({ name, email, onClickAvatar, onClickLogo }: IHeaderProps) {
+export function PageNav({ name, email, onClickAvatar, onClickLogo }: IPageNavProps) {
     return (
         <header className="flex flex-row justify-between items-center m-2">
             <Logo variant="row" onClick={onClickLogo} />
