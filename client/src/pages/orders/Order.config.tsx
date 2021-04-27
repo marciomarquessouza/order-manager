@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { signOut } from '../../services';
 import { PageNav } from '../../layout/PageNav';
 import { useAppSelector } from '../../hooks';
+import { OrderList } from './OrderList.page';
 
 export function Order() {
     const { user } = useAppSelector((state) => state.auth);
@@ -20,7 +21,7 @@ export function Order() {
                     <div>Create Order</div>
                 </Route>
                 <Route path="/">
-                    <div>List Orders</div>
+                    <OrderList />
                 </Route>
             </Switch>
         </>
