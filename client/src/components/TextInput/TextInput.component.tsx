@@ -14,6 +14,7 @@ export function TextInput({
     disabled,
     fullWidth,
     name,
+    autoFocus = false,
 }: ITextInputProps) {
     const handleChange = (element: React.ChangeEvent<HTMLTextAreaElement>): void => {
         element.preventDefault();
@@ -33,6 +34,7 @@ export function TextInput({
             required={required}
             disabled={disabled}
             fullWidth={fullWidth}
+            autoFocus={autoFocus}
         />
     );
 }

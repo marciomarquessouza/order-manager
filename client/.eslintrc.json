@@ -29,7 +29,8 @@
         "import/prefer-default-export": "off",
         "no-console": "error",
         "require-jsdoc": "off",
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "jsx-a11y/no-autofocus": "off"
     },
     "overrides": [
         {

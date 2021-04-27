@@ -11,4 +11,5 @@ export interface ITextInputProps extends ITests {
     required?: boolean;
     disabled?: boolean;
     fullWidth?: boolean;
+    autoFocus?: boolean;
 }

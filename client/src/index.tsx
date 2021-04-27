@@ -8,6 +8,10 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { firebaseApp } from './services/firebase.service';
+import { FIREBASE_CONFIG } from './config';
+
+firebaseApp.initializeApp(FIREBASE_CONFIG);
 
 ReactDOM.render(
     <React.StrictMode>

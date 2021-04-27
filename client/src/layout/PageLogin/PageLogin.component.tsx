@@ -28,6 +28,7 @@ export function PageLogin({
                     <form onSubmit={onSubmit}>
                         <div className="h-36 flex flex-wrap content-between mx-12 mt-4 mb-8">
                             <TextInput
+                                autoFocus
                                 type="email"
                                 variant="outlined"
                                 placeholder="E-mail"
