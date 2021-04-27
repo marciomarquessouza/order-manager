@@ -1,36 +1,22 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { firebaseApp } from '../services';
 import { Auth } from '../pages/auth/Auth.config';
+import { Order } from '../pages/orders/Order.config';
+import { getUser } from '../pages/auth/SignIn.slice';
+import { useAppDispatch } from '../hooks';
 
 export function AppRouter() {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const dispatch = useAppDispatch();
 
     firebaseApp.auth().onAuthStateChanged((user) => {
-        return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
+        if (user) {
+            dispatch(getUser());
+            return setIsLoggedIn(true);
+        }
+        return setIsLoggedIn(false);
     });
 
-    const signOut = () => {
-        firebaseApp.auth().signOut();
-    };
-
-    return (
-        <Router>
-            {!isLoggedIn ? (
-                <Auth />
-            ) : (
-                <>
-                    <button onClick={signOut}>Sign out</button>
-                    <Switch>
-                        <Route path="/add-number">
-                            <div>Create Order</div>
-                        </Route>
-                        <Route path="/">
-                            <div>List Orders</div>
-                        </Route>
-                    </Switch>
-                </>
-            )}
-        </Router>
-    );
+    return <Router>{!isLoggedIn ? <Auth /> : <Order />}</Router>;
 }

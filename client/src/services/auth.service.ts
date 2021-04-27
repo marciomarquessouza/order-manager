@@ -25,8 +25,27 @@ export async function signWithEmailAndPassword(
             return { token, email, name };
         }
 
-        throw new Error('Error to return user');
+        throw new Error('SignIn Error');
     } catch (error) {
         throw new Error(error);
     }
 }
+
+export async function getFirebaseUser(): Promise<SignProtocol.result> {
+    try {
+        const user = firebaseApp.auth().currentUser;
+        if (user) {
+            const token = await user.getIdToken();
+            const email = user.email || '';
+            const name = user.displayName || 'user';
+            return { token, email, name };
+        }
+        throw new Error('SignIn Error');
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+export const signOut = () => {
+    firebaseApp.auth().signOut();
+};

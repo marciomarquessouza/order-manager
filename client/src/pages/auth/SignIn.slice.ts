@@ -1,11 +1,16 @@
-import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../entities/IUser';
-import { signWithEmailAndPassword, SignProtocol } from '../../services';
+import { signWithEmailAndPassword, SignProtocol, getFirebaseUser } from '../../services';
 import { open } from '../alerts/Alert.slice';
 
 export const signIn = createAsyncThunk('auth/signIn', async (user: IUser, { dispatch }) => {
     const response = await signWithEmailAndPassword(user);
     dispatch(open({ message: 'Success to Login', severity: 'info' }));
+    return { data: response };
+});
+
+export const getUser = createAsyncThunk('auth/getUser', async () => {
+    const response = await getFirebaseUser();
     return { data: response };
 });
 
@@ -26,7 +31,11 @@ const initialState: IUserState = {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        addUser: (state: IUserState, action: PayloadAction<SignProtocol.result>) => {
+            state.user = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(signIn.pending, (state) => {
             state.appState = 'loading';
@@ -39,7 +48,20 @@ const authSlice = createSlice({
         builder.addCase(signIn.rejected, (state) => {
             state.appState = 'error';
         });
+        builder.addCase(getUser.pending, (state) => {
+            state.appState = 'loading';
+        });
+        builder.addCase(getUser.fulfilled, (state, action) => {
+            const { data } = action.payload;
+            state.user = data;
+            state.appState = 'idle';
+        });
+        builder.addCase(getUser.rejected, (state) => {
+            state.appState = 'error';
+        });
     },
 });
+
+export const { addUser } = authSlice.actions;
 
 export default authSlice.reducer;
