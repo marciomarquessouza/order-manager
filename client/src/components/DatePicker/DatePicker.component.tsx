@@ -8,6 +8,7 @@ export function DatePicker({
     value,
     onChange,
     label,
+    required = false,
     testId = 'date-picker-component',
 }: IDatePickerProps) {
     const handleDateChange = (date: Moment | null) => {
@@ -30,6 +31,7 @@ export function DatePicker({
                     'aria-label': 'change date',
                 }}
                 inputProps={{ 'data-testid': testId }}
+                required={required}
             />
         </MuiPickersUtilsProvider>
     );
