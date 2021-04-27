@@ -15,4 +15,5 @@ export interface ITableProps extends ITests {
     columns: Column[];
     rows: Row[];
     onClick: (value: string) => void;
+    isLoading?: boolean;
 }
