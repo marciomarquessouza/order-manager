@@ -19,19 +19,19 @@ export const alertSlice = createSlice({
     name: 'alert',
     initialState,
     reducers: {
-        open: (state, action: PayloadAction<{ message: string; severity: TypeSeverity }>) => {
+        openAlert: (state, action: PayloadAction<{ message: string; severity: TypeSeverity }>) => {
             const { message, severity } = action.payload;
             state.isOpen = true;
             state.message = message;
             state.severity = severity;
         },
-        close: (state) => {
+        closeAlert: (state) => {
             state.isOpen = false;
         },
     },
 });
 
-export const { open, close } = alertSlice.actions;
+export const { openAlert, closeAlert } = alertSlice.actions;
 
 export const selectAlert = (state: RootState) => state.alert;
 

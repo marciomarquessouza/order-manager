@@ -1,14 +1,14 @@
 import React from 'react';
 import { Alert } from '../../components/Alert';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { close } from './Alert.slice';
+import { closeAlert } from './Alert.slice';
 
 export function AppAlert() {
     const alert = useAppSelector((state) => state.alert);
     const dispatch = useAppDispatch();
 
     const handleCloseAlert = () => {
-        dispatch(close());
+        dispatch(closeAlert());
     };
 
     return (
