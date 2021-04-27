@@ -9,14 +9,7 @@ export default {
     component: PageOrderDetail,
 } as Meta;
 
-const Template: Story<IPageOrderDetailProps> = (props) => (
-    <PageOrderDetail {...props}>
-        <div>
-            <h2>Title</h2>
-            <p>My Text Body</p>
-        </div>
-    </PageOrderDetail>
-);
+const Template: Story<IPageOrderDetailProps> = (props) => <PageOrderDetail {...props} />;
 
 const order = mockOrder();
 
