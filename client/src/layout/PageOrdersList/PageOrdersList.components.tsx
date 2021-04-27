@@ -2,6 +2,7 @@ import React from 'react';
 import { Column, Row, Table } from '../../components/Table';
 import { IPageOrdersListProps } from './PageOrdersList.props';
 import { createOrderData } from '../../components/Table/helpers';
+import { Paper } from '@material-ui/core';
 
 export function PageOrdersList({ data, onRowClick }: IPageOrdersListProps) {
     const columns: Column[] = [
@@ -34,10 +35,10 @@ export function PageOrdersList({ data, onRowClick }: IPageOrdersListProps) {
     const rows: Row[] = data.map(createOrderData);
 
     return (
-        <section className="rounded-t-3xl overflow-hidden">
+        <Paper elevation={2}>
             <div className="bg-white">
                 <Table columns={columns} rows={rows} onClick={onRowClick} />
             </div>
-        </section>
+        </Paper>
     );
 }
