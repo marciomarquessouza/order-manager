@@ -1,2 +1,3 @@
 server/serviceAccountKey-test.json
 server/serviceAccountKey.json
+server/serviceAccountKey.prod.json
