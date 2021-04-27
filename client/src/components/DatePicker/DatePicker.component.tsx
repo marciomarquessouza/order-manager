@@ -10,10 +10,11 @@ export function DatePicker({
     label,
     required = false,
     testId = 'date-picker-component',
+    name,
 }: IDatePickerProps) {
     const handleDateChange = (date: Moment | null) => {
         const newDate = date ? new Date(date.calendar()).valueOf() : new Date().valueOf();
-        onChange(newDate);
+        onChange(newDate, name);
     };
 
     return (
