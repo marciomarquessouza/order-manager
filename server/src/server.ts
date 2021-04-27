@@ -1,7 +1,7 @@
 import { app, env } from '@main/config';
 import { FirebaseHelper } from '@infra/database';
 
-const firebaseServiceAccount = require('../serviceAccount.json');
+const firebaseServiceAccount = require('../serviceAccountKey.json');
 
 FirebaseHelper.initialize(firebaseServiceAccount);
 
