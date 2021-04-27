@@ -8,8 +8,15 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { ITableProps } from './Table.props';
 import { useStyles } from './Table.styles';
+import { LinearProgress } from '@material-ui/core';
 
-export function Table({ rows, columns, onClick, testId = 'table-component' }: ITableProps) {
+export function Table({
+    rows,
+    columns,
+    onClick,
+    isLoading = false,
+    testId = 'table-component',
+}: ITableProps) {
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [page, setPage] = React.useState(0);
     const classes = useStyles();
@@ -50,28 +57,34 @@ export function Table({ rows, columns, onClick, testId = 'table-component' }: IT
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row) => {
-                                return (
-                                    <TableRow
-                                        hover
-                                        role="checkbox"
-                                        tabIndex={-1}
-                                        key={`${row.code}`}
-                                        onClick={(event) => handleOnClick(event, `${row.code}`)}
-                                    >
-                                        {columns.map((column) => {
-                                            const rowValue = row[column.id];
-                                            return (
-                                                <TableCell key={column.id} align={column.align}>
-                                                    {rowValue}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-                            })}
+                        {isLoading ? (
+                            <div>
+                                <LinearProgress color="secondary" />
+                            </div>
+                        ) : (
+                            rows
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row) => {
+                                    return (
+                                        <TableRow
+                                            hover
+                                            role="checkbox"
+                                            tabIndex={-1}
+                                            key={`${row.code}`}
+                                            onClick={(event) => handleOnClick(event, `${row.code}`)}
+                                        >
+                                            {columns.map((column) => {
+                                                const rowValue = row[column.id];
+                                                return (
+                                                    <TableCell key={column.id} align={column.align}>
+                                                        {rowValue}
+                                                    </TableCell>
+                                                );
+                                            })}
+                                        </TableRow>
+                                    );
+                                })
+                        )}
                     </TableBody>
                 </MaterialTable>
             </TableContainer>
