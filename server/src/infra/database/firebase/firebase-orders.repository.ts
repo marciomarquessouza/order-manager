@@ -1,4 +1,3 @@
-import { Order } from '@entities/Order';
 import { CreateOrderRepository, LoadOrdersRepository, UpdateOrderRepository } from '@/data';
 import { FirebaseHelper } from './firebase-helper';
 
@@ -16,7 +15,9 @@ export class FirebaseOrderRepository
         if (result.empty) {
             return [];
         }
-        const orders = result.docs.map((doc) => doc.data() as Order);
+        const orders = result.docs
+            .map((doc) => FirebaseHelper.parserResult(doc.data(), doc.id))
+            .filter((order) => !!order.title && !!order.bookingDate);
         return orders;
     }
 
