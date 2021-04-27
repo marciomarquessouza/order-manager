@@ -13,10 +13,11 @@ export function TextInput({
     required,
     disabled,
     fullWidth,
+    name,
 }: ITextInputProps) {
     const handleChange = (element: React.ChangeEvent<HTMLTextAreaElement>): void => {
         element.preventDefault();
-        onChange(element.target.value);
+        onChange(element.target.value, name);
     };
 
     return (
