@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { BACKEND_SERVER_URL } from '../config';
+import { firebaseApp } from '../services/firebase.service';
 
 interface IRequesProps {
     url: string;
@@ -12,16 +13,13 @@ export const baseURL = BACKEND_SERVER_URL;
 
 const api = axios.create({ baseURL });
 
-const setTokenOnRequest = (token = '') => {
-    api.interceptors.request.use(function (config) {
-        config.headers.Authorization = token ? `Bearer ${token}` : '';
-        return config;
-    });
-};
-
 async function requestResponse<T>(config: AxiosRequestConfig): Promise<T> {
     try {
-        const response = await api.request<T>(config);
+        const user = firebaseApp.auth().currentUser;
+        const token = await user?.getIdToken();
+        const Authorization = token ? `Bearer ${token}` : '';
+        const headers = { ...config.headers, Authorization };
+        const response = await api.request<T>({ ...config, headers });
         return response.data;
     } catch (error) {
         throw new Error(error);
@@ -89,6 +87,5 @@ export default {
     put,
     patch,
     remove,
-    setTokenOnRequest,
     api,
 };
