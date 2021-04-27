@@ -10,22 +10,9 @@ export namespace SignProtocol {
     };
 }
 
-export async function signWithEmailAndPassword(
-    props: SignProtocol.params,
-): Promise<SignProtocol.result> {
+export async function signWithEmailAndPassword(props: SignProtocol.params): Promise<void> {
     try {
-        const { user } = await firebaseApp
-            .auth()
-            .signInWithEmailAndPassword(props.email, props.password);
-
-        if (user) {
-            const token = await user.getIdToken();
-            const email = user.email || '';
-            const name = user.displayName || 'User';
-            return { token, email, name };
-        }
-
-        throw new Error('SignIn Error');
+        await firebaseApp.auth().signInWithEmailAndPassword(props.email, props.password);
     } catch (error) {
         throw new Error(error);
     }
