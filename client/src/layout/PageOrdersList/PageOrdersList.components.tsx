@@ -4,12 +4,12 @@ import { IPageOrdersListProps } from './PageOrdersList.props';
 import { createOrderList } from '../../components/Table/helpers';
 import { Paper } from '@material-ui/core';
 
-export function PageOrdersList({ data, onRowClick }: IPageOrdersListProps) {
+export function PageOrdersList({ data, onRowClick, isLoading = false }: IPageOrdersListProps) {
     const columns: Column[] = [
         {
             id: 'title',
             label: 'Title',
-            align: 'center',
+            align: 'left',
             minWidth: 170,
         },
         {
@@ -37,7 +37,7 @@ export function PageOrdersList({ data, onRowClick }: IPageOrdersListProps) {
     return (
         <Paper elevation={2}>
             <div className="bg-white">
-                <Table columns={columns} rows={rows} onClick={onRowClick} />
+                <Table columns={columns} rows={rows} onClick={onRowClick} isLoading={isLoading} />
             </div>
         </Paper>
     );
