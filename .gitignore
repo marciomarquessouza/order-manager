@@ -1,3 +1,6 @@
 server/serviceAccountKey-test.json
 server/serviceAccountKey.json
 server/serviceAccountKey.prod.json
+client/firebaseConfig.js
+client/firebaseConfig-dev.js
+client/firebaseConfig-prod.js
