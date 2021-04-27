@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import auth from './pages/auth/SignIn.slice';
+import alert from './pages/alerts/Alert.slice';
 
 const rootReducer = combineReducers({
     auth,
+    alert,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

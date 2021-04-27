@@ -1,29 +1,31 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
 import { IUser } from '../../entities/IUser';
 import { signWithEmailAndPassword, SignProtocol } from '../../services';
+import { open } from '../alerts/Alert.slice';
 
-export const signIn = createAsyncThunk('auth/signIn', async (user: IUser) => {
+export const signIn = createAsyncThunk('auth/signIn', async (user: IUser, { dispatch }) => {
     const response = await signWithEmailAndPassword(user);
+    dispatch(open({ message: 'Success to Login', severity: 'info' }));
     return { data: response };
 });
-
-const authAdapter = createEntityAdapter<IUser>({});
 
 export interface IUserState {
     appState: 'idle' | 'loading' | 'error';
     user: SignProtocol.result;
 }
 
+const initialState: IUserState = {
+    appState: 'idle',
+    user: {
+        email: '',
+        name: '',
+        token: '',
+    },
+};
+
 const authSlice = createSlice({
     name: 'auth',
-    initialState: authAdapter.getInitialState<IUserState>({
-        appState: 'idle',
-        user: {
-            email: '',
-            name: '',
-            token: '',
-        },
-    }),
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(signIn.pending, (state) => {
