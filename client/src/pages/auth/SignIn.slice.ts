@@ -5,7 +5,7 @@ import { openAlert } from '../alerts/Alert.slice';
 
 export const signIn = createAsyncThunk('auth/signIn', async (user: IUser, { dispatch }) => {
     await signWithEmailAndPassword(user);
-    dispatch(openAlert({ message: 'Success to Login', severity: 'info' }));
+    dispatch(openAlert({ message: 'Login successfully', severity: 'info' }));
 });
 
 export const getUser = createAsyncThunk('auth/getUser', async () => {
