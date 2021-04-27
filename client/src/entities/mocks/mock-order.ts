@@ -1,4 +1,5 @@
 import faker from 'faker';
+import { title } from 'node:process';
 import { IOrder } from '../IOrder';
 
 const params = {
@@ -23,3 +24,19 @@ const orderB: IOrder = { uid: faker.datatype.uuid(), ...params };
 export const mockOrder = (): IOrder => orderA;
 
 export const mockOrders = (): IOrder[] => [orderA, orderB];
+
+export const createOrderProps = (): Omit<IOrder, 'uid'> => ({
+    title: '',
+    bookingDate: new Date().valueOf(),
+    customer: {
+        name: '',
+        email: '',
+        phone: '',
+    },
+    address: {
+        street: '',
+        city: '',
+        country: '',
+        zip: '',
+    },
+});
