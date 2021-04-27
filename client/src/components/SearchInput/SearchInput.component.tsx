@@ -6,6 +6,7 @@ import Search from '@material-ui/icons/Search';
 export function SearchInput({
     value,
     onChange,
+    placeholder = 'Search',
     testId = 'search-input-component',
 }: ISearchInputProps) {
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -19,7 +20,7 @@ export function SearchInput({
                 <Search fontSize="small" color="action" />
             </aside>
             <TextField
-                placeholder="Search"
+                placeholder={placeholder}
                 onChange={handleOnChange}
                 value={value}
                 fullWidth={true}
