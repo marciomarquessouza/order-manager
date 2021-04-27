@@ -1,7 +1,7 @@
 import React from 'react';
 import { Column, Row, Table } from '../../components/Table';
 import { IPageOrdersListProps } from './PageOrdersList.props';
-import { createOrderData } from '../../components/Table/helpers';
+import { createOrderList } from '../../components/Table/helpers';
 import { Paper } from '@material-ui/core';
 
 export function PageOrdersList({ data, onRowClick }: IPageOrdersListProps) {
@@ -32,7 +32,7 @@ export function PageOrdersList({ data, onRowClick }: IPageOrdersListProps) {
         },
     ];
 
-    const rows: Row[] = data.map(createOrderData);
+    const rows: Row[] = data.map(createOrderList);
 
     return (
         <Paper elevation={2}>

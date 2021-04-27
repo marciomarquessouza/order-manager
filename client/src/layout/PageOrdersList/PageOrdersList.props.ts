@@ -1,3 +1,5 @@
+import { IOrder } from '../../entities/IOrder';
+
 export interface Data {
     code: string;
     title: string;
@@ -7,6 +9,6 @@ export interface Data {
 }
 
 export interface IPageOrdersListProps {
-    data: Data[];
+    data: IOrder[];
     onRowClick: (id: string) => void;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { PageOrdersList, IPageOrdersListProps } from './';
+import { mockOrders } from '../../entities/mocks/mock-order';
 
 export default {
     title: 'Order-Manager/Layout/PageOrdersList',
@@ -15,21 +16,6 @@ const Template: Story<IPageOrdersListProps> = (props) => (
 
 export const Default = Template.bind({});
 Default.args = {
-    data: [
-        {
-            code: 'order1',
-            title: 'Test Order 1',
-            bookingDate: 1561172400000,
-            address: 'Wriezener Str. 12',
-            customer: 'Emad Alam',
-        },
-        {
-            code: 'order2',
-            title: 'Test Order 2',
-            bookingDate: 1554284950000,
-            address: 'Washington Luiz. 4150',
-            customer: 'Marcio Souza',
-        },
-    ],
+    data: mockOrders(),
     onRowClick: () => undefined,
 };
