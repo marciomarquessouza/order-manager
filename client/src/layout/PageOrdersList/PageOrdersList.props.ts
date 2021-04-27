@@ -11,4 +11,5 @@ export interface Data {
 export interface IPageOrdersListProps {
     data: IOrder[];
     onRowClick: (id: string) => void;
+    isLoading?: boolean;
 }
