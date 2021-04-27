@@ -11,6 +11,7 @@ export function PageHeader({
     searchText = '',
     onSearchChange,
     actionButtonLabel,
+    searchPlaceholder,
     onClickActionButton,
 }: IPageHeaderProps) {
     const classes = useStyles();
@@ -26,7 +27,13 @@ export function PageHeader({
                 </p>
             </aside>
             <div className="flex items-start pt-12">
-                {onSearchChange && <SearchInput value={searchText} onChange={onSearchChange} />}
+                {onSearchChange && (
+                    <SearchInput
+                        value={searchText}
+                        onChange={onSearchChange}
+                        placeholder={searchPlaceholder}
+                    />
+                )}
             </div>
             <aside className="flex items-start justify-end pt-12 pr-8">
                 <div className="bg-white rounded w-40">

@@ -6,6 +6,7 @@ export interface IPageHeaderProps {
     icon: ReactNode;
     searchText?: string;
     onSearchChange?: (text: string) => void;
+    searchPlaceholder?: string;
     actionButtonLabel: string;
     onClickActionButton: () => void;
 }
