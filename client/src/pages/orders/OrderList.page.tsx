@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { PageHeader } from '../../layout/PageHeader/PageHeader.component';
 import { PageOrdersList } from '../../layout/PageOrdersList';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -7,11 +7,14 @@ import { filteredOrders } from './Order.selectors';
 import { ListAlt } from '@material-ui/icons';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { openAlert } from '../alerts/Alert.slice';
+import { useHistory } from 'react-router-dom';
+import { ORDER_CREATE } from '../../routes';
 
 export function OrderList() {
     const { appState, searchText } = useAppSelector((state) => state.orders);
     const dispatch = useAppDispatch();
     const orders = useAppSelector(filteredOrders);
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(loadOrders());
@@ -23,38 +26,38 @@ export function OrderList() {
         }
     }, [appState, dispatch]);
 
-    const handleCreateOrder = () => {};
+    const handleCreateOrder = useCallback(() => {
+        history.push(ORDER_CREATE);
+    }, [history]);
 
-    const handleSearchText = (text: string) => {
-        dispatch(setSearchText(text));
-    };
+    const handleSearch = useCallback((text: string) => dispatch(setSearchText(text)), [dispatch]);
 
     return (
         <main>
-            <div>
+            <section>
                 <PageHeader
                     searchText={searchText}
                     onClickActionButton={handleCreateOrder}
                     actionButtonLabel="New Order"
                     title="Orders"
                     icon={<ListAlt color="inherit" fontSize="large" />}
-                    onSearchChange={handleSearchText}
+                    onSearchChange={handleSearch}
                     searchPlaceholder="Search by Order Title"
                 />
-            </div>
+            </section>
             {appState === 'loading' ? (
-                <div className="flex items-center justify-center m-20">
+                <section className="flex items-center justify-center m-20">
                     <div className="m-4">
                         <Typography variant="h5" color="secondary">
                             Loading Data
                         </Typography>
                     </div>
                     <CircularProgress color="secondary" size={28} />
-                </div>
+                </section>
             ) : (
-                <div className="px-12 z-10 transform -translate-y-14">
+                <section className="px-12 z-10 transform -translate-y-14">
                     <PageOrdersList data={orders} onRowClick={() => undefined} />
-                </div>
+                </section>
             )}
         </main>
     );
