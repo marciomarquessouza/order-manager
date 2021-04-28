@@ -8,7 +8,7 @@ import { ListAlt } from '@material-ui/icons';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { openAlert } from '../alerts/Alert.slice';
 import { useHistory } from 'react-router-dom';
-import { ORDER_CREATE } from '../../routes';
+import { ORDER_CREATE, ORDER_DETAIL } from '../../routes';
 
 export function OrderList() {
     const { appState, searchText } = useAppSelector((state) => state.orders);
@@ -31,6 +31,11 @@ export function OrderList() {
     }, [history]);
 
     const handleSearch = useCallback((text: string) => dispatch(setSearchText(text)), [dispatch]);
+
+    const handleOrderDetail = useCallback(
+        (uid: string) => history.push(ORDER_DETAIL.replace(':uid', uid)),
+        [history],
+    );
 
     return (
         <main>
@@ -56,7 +61,7 @@ export function OrderList() {
                 </section>
             ) : (
                 <section className="px-12 z-10 transform -translate-y-14">
-                    <PageOrdersList data={orders} onRowClick={() => undefined} />
+                    <PageOrdersList data={orders} onRowClick={handleOrderDetail} />
                 </section>
             )}
         </main>
