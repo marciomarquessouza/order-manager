@@ -4,6 +4,8 @@ import { signOut } from '../../services';
 import { PageNav } from '../../layout/PageNav';
 import { useAppSelector } from '../../hooks';
 import { OrderList } from './OrderList.page';
+import { OrderForm } from './OrderForm.page';
+import { ORDER_CREATE, ORDER_DETAIL, ORDER_LIST } from '../../routes';
 
 export function Order() {
     const { user } = useAppSelector((state) => state.auth);
@@ -17,10 +19,13 @@ export function Order() {
                 onClickLogo={() => undefined}
             />
             <Switch>
-                <Route path="/add-number">
-                    <div>Create Order</div>
+                <Route path={ORDER_DETAIL}>
+                    <div>Order Detail</div>
                 </Route>
-                <Route path="/">
+                <Route path={ORDER_CREATE}>
+                    <OrderForm />
+                </Route>
+                <Route path={ORDER_LIST}>
                     <OrderList />
                 </Route>
             </Switch>
