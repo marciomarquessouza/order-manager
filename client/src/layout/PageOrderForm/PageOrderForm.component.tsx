@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+/* eslint-disable no-console */
+import React, { useCallback } from 'react';
 import { DatePicker } from '../../components/DatePicker';
 import { TextInput } from '../../components/TextInput';
-import { IOrderProps, IPageOrderFormProps } from './PageOrderForm.props';
+import { IPageOrderFormProps } from './PageOrderForm.props';
 import { Business, Person } from '@material-ui/icons';
 import { PageCard } from '../PageCard';
-import { createOrderProps } from '../../entities/mocks/mock-order';
 import { useStyles } from './PageOrderForm.styles';
 
 export function PageOrderForm({
@@ -12,40 +12,53 @@ export function PageOrderForm({
     onOrderChange,
     onSubmit,
     onOrderTitleChange,
+    onError,
 }: IPageOrderFormProps) {
     const classes = useStyles();
 
-    const handleBasicDataChange = (value: string | number, name?: string) => {
-        if (name) {
-            onOrderChange({ ...order, [name]: value });
-        }
+    const handleBasicDataChange = useCallback(
+        (value: string | number, name?: string) => {
+            if (name) {
+                onOrderChange({ ...order, [name]: value });
+            }
 
-        if (name === 'title' && typeof value === 'string') {
-            onOrderTitleChange(value);
-        }
-    };
+            if (name === 'title' && typeof value === 'string') {
+                onOrderTitleChange(value);
+            }
+        },
+        [onOrderChange, onOrderTitleChange, order],
+    );
 
-    const handleAddressChange = (value: string, name?: string) => {
-        if (name) {
-            onOrderChange({ ...order, address: { ...order.address, [name]: value } });
-        }
-    };
+    const handleAddressChange = useCallback(
+        (value: string, name?: string) => {
+            if (name) {
+                onOrderChange({ ...order, address: { ...order.address, [name]: value } });
+            }
+        },
+        [onOrderChange, order],
+    );
 
-    const handleCustomerChange = (value: string, name?: string) => {
-        if (name) {
-            onOrderChange({ ...order, customer: { ...order.customer, [name]: value } });
-        }
-    };
+    const handleCustomerChange = useCallback(
+        (value: string, name?: string) => {
+            if (name) {
+                onOrderChange({ ...order, customer: { ...order.customer, [name]: value } });
+            }
+        },
+        [order, onOrderChange],
+    );
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        onSubmit(order);
-    };
+    const handleSubmit = useCallback(
+        (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            onSubmit(order);
+        },
+        [onSubmit, order],
+    );
 
     return (
         <PageCard title="New Order">
             <form onSubmit={handleSubmit}>
-                <section className="flex flex-col max-w-xs m-6">
+                <section className="flex flex-col max-w-sm m-6">
                     <TextInput
                         name="title"
                         type="text"
@@ -63,12 +76,12 @@ export function PageOrderForm({
                         required
                     />
                 </section>
-                <section className="m-6">
+                <section className="max-w-sm m-6">
                     <header className="flex items-center my-4">
                         <Person fontSize="small" color="primary" />
                         <span className={classes.pageTitleStyle}>Customer</span>
                     </header>
-                    <article className="flex flex-col  mx-4">
+                    <article className="mx-4">
                         <div className="my-4">
                             <TextInput
                                 name="name"
@@ -77,7 +90,7 @@ export function PageOrderForm({
                                 label="Customer Name"
                                 value={order.customer.name}
                                 onChange={handleCustomerChange}
-                                required
+                                fullWidth
                             />
                         </div>
                         <div className="my-4">
@@ -88,7 +101,7 @@ export function PageOrderForm({
                                 label="Customer Email"
                                 value={order.customer.email}
                                 onChange={handleCustomerChange}
-                                required
+                                fullWidth
                             />
                         </div>
                         <div className="my-4">
@@ -99,7 +112,7 @@ export function PageOrderForm({
                                 label="Customer Phone"
                                 value={order.customer.phone}
                                 onChange={handleCustomerChange}
-                                required
+                                fullWidth
                             />
                         </div>
                     </article>
@@ -118,7 +131,7 @@ export function PageOrderForm({
                                 label="Street"
                                 value={order.address.street}
                                 onChange={handleAddressChange}
-                                required
+                                fullWidth
                             />
                         </div>
                         <div className="my-4">
@@ -129,9 +142,18 @@ export function PageOrderForm({
                                 label="City"
                                 value={order.address.city}
                                 onChange={handleAddressChange}
-                                required
+                                fullWidth
                             />
                         </div>
+                        <TextInput
+                            name="zip"
+                            type="text"
+                            placeholder="Zip Code"
+                            label="Zip Code"
+                            value={order.address.zip}
+                            onChange={handleAddressChange}
+                            fullWidth
+                        />
                         <div className="my-4">
                             <TextInput
                                 name="country"
@@ -140,7 +162,7 @@ export function PageOrderForm({
                                 label="Country"
                                 value={order.address.country}
                                 onChange={handleAddressChange}
-                                required
+                                fullWidth
                             />
                         </div>
                     </article>
