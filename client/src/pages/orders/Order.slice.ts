@@ -6,16 +6,32 @@ import {
 } from '@reduxjs/toolkit';
 import request from '../../api/request';
 import { IOrder } from '../../entities/IOrder';
+import { IOrderProps } from '../../layout/PageOrderForm';
 import { RootState } from '../../store';
+import { openAlert } from '../alerts/Alert.slice';
 
-export const loadOrders = createAsyncThunk('orders/load-orders', async (_, { dispatch }) => {
+export const loadOrders = createAsyncThunk('orders/load-orders', async () => {
     const response = await request.get<IOrder[]>({ url: '/api/orders' });
     return { data: response };
 });
 
+export const createOrder = createAsyncThunk(
+    'orders/create-order',
+    async (order: IOrderProps, { dispatch }) => {
+        try {
+            await request.post({ url: '/api/orders', data: order });
+            dispatch(openAlert({ message: 'Order created with success', severity: 'success' }));
+        } catch (error) {
+            dispatch(openAlert({ message: error.message, severity: 'error' }));
+            throw new Error(error);
+        }
+    },
+);
+
 export interface IOrderState {
-    appState: 'idle' | 'loading' | 'error';
+    appState: 'idle' | 'loading' | 'created' | 'updated' | 'error';
     searchText: string;
+    message?: string;
 }
 
 const ordersAdapter = createEntityAdapter<IOrder>({
@@ -49,6 +65,15 @@ const ordersSlice = createSlice({
             state.appState = 'idle';
         });
         builder.addCase(loadOrders.rejected, (state) => {
+            state.appState = 'error';
+        });
+        builder.addCase(createOrder.pending, (state) => {
+            state.appState = 'loading';
+        });
+        builder.addCase(createOrder.fulfilled, (state) => {
+            state.appState = 'created';
+        });
+        builder.addCase(createOrder.rejected, (state) => {
             state.appState = 'error';
         });
     },
