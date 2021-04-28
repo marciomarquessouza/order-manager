@@ -2,6 +2,7 @@ import React from 'react';
 import { PageLogin } from '../../layout/PageLogin';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { signIn } from './SignIn.slice';
+import { openAlert } from '../alerts/Alert.slice';
 
 export function SignIn() {
     const { appState } = useAppSelector((state) => state.auth);
@@ -10,6 +11,14 @@ export function SignIn() {
     const [password, setPassword] = React.useState('');
 
     const handleSignIn = () => {
+        if (!email || !password) {
+            return dispatch(
+                openAlert({
+                    message: 'The e-mail and password fields are mandatory',
+                    severity: 'error',
+                }),
+            );
+        }
         dispatch(signIn({ email, password }));
     };
 
