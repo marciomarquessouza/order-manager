@@ -1,5 +1,8 @@
 {
-    "name": "client",
+    "name": "order-manager-client",
+    "description": "NodeJs Rest API using Express, Typescript, Solid and TDD",
+    "author": "Marcio Marques de Souza",
+    "repository": "https://github.com/marciomarquessouza/order-manager",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
