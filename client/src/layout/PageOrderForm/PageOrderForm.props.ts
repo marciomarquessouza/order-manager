@@ -7,4 +7,5 @@ export interface IPageOrderFormProps {
     onOrderChange: (order: IOrderProps) => void;
     onSubmit: (order: IOrderProps) => void;
     onOrderTitleChange: (title: string) => void;
+    onError?: (error: string) => void;
 }
