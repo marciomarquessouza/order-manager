@@ -8,5 +8,6 @@ export interface IPageHeaderProps {
     onSearchChange?: (text: string) => void;
     searchPlaceholder?: string;
     actionButtonLabel: string;
+    isLoading?: boolean;
     onClickActionButton: () => void;
 }
