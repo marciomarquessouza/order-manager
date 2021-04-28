@@ -1,4 +1,5 @@
-import { app, env } from '@main/config';
+import 'module-alias/register';
+import { app, env } from '@/main/config';
 import { FirebaseHelper } from '@infra/database';
 
 const firebaseServiceAccount = require('../serviceAccountKey.json');
