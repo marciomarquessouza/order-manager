@@ -15,6 +15,13 @@ jest.mock('../../../infra/database/firebase/firebase-helper', () => ({
                 docs: [{ data: () => ({ ...mockOrder(), uid: 'orderId' }) }],
             }),
         }),
+        parserResult: jest.fn().mockReturnValueOnce({
+            title: 'title',
+            bookingDate: new Date().valueOf(),
+            customer: {},
+            address: {},
+            uid: 'orderId',
+        }),
         getUid: () => 'orderId',
     },
 }));
