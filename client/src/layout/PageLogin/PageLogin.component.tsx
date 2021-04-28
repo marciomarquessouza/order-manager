@@ -53,6 +53,7 @@ export function PageLogin({
                                 onClick={onSubmit}
                                 fullWidth
                                 isLoading={isLoading}
+                                type="submit"
                             >
                                 Login
                             </Button>

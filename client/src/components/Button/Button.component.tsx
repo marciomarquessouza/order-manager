@@ -12,6 +12,7 @@ export function Button({
     onClick,
     testId = 'button-component',
     isLoading = false,
+    type = 'button',
 }: IButtonProps) {
     return (
         <MaterialButton
@@ -22,6 +23,7 @@ export function Button({
             fullWidth={fullWidth}
             onClick={onClick}
             startIcon={isLoading ? <CircularProgress size={12} /> : null}
+            type={type}
         >
             <span className="font-bold">{children}</span>
         </MaterialButton>

@@ -9,4 +9,5 @@ export interface IButtonProps extends ITests {
     fullWidth?: boolean;
     isLoading?: boolean;
     onClick: () => void;
+    type?: 'button' | 'submit';
 }
