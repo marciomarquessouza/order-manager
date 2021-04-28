@@ -92,34 +92,6 @@ Return an Token (It was created only for development propose. Only works in "DEV
 }
 ```
 
-## Client (Frontend)
-
-Move to `client` folder. You need to add the file `client/src/config/firebase.config.ts` with the `serviceAccountKey.json`.
-
-Installation:
-
-``yarn`
-
-To Run Test Suite:
-
-`yarn test`
-
-To build:
-
-`yarn build`
-
-To run the Server
-
-`yarn start`
-
-To run the Storybook
-
-`yarn sorybook`
-
-Server default address:
-
-`localhost:3000`
-
 > ## Libs and Tools
 
 - NPM
