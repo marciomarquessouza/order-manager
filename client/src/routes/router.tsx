@@ -6,6 +6,7 @@ import { Order } from '../pages/orders/Order.config';
 import { addUser } from '../pages/auth/SignIn.slice';
 import { useAppDispatch } from '../hooks';
 import { CircularProgress, Typography } from '@material-ui/core';
+import { PageLoading } from '../layout/PageLoading/PageLoading.component';
 
 export function AppRouter() {
     const [loginStatus, setLoginStatus] = React.useState<'idle' | 'signin' | 'signout'>('idle');
@@ -26,16 +27,7 @@ export function AppRouter() {
     }, [setLoginStatus, dispatch]);
 
     if (loginStatus === 'idle') {
-        return (
-            <section className="flex items-center justify-center m-20">
-                <div className="m-4">
-                    <Typography variant="h5" color="secondary">
-                        Loading Data
-                    </Typography>
-                </div>
-                <CircularProgress color="secondary" size={28} />
-            </section>
-        );
+        return <PageLoading />;
     }
 
     return <Router>{loginStatus === 'signin' ? <Order /> : <Auth />}</Router>;
