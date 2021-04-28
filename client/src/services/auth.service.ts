@@ -4,7 +4,6 @@ import { firebaseApp } from './firebase.service';
 export namespace SignProtocol {
     export type params = IUser;
     export type result = {
-        token: string;
         email: string;
         name: string;
     };
@@ -15,21 +14,6 @@ export async function signWithEmailAndPassword(props: SignProtocol.params): Prom
         await firebaseApp.auth().signInWithEmailAndPassword(props.email, props.password);
     } catch (error) {
         throw new Error(error);
-    }
-}
-
-export async function getFirebaseUser(): Promise<SignProtocol.result> {
-    try {
-        const user = firebaseApp.auth().currentUser;
-        if (user) {
-            const token = await user.getIdToken();
-            const email = user.email || '';
-            const name = user.displayName || 'user';
-            return { token, email, name };
-        }
-        throw new Error('SignIn Error');
-    } catch (error) {
-        throw new Error(error.message);
     }
 }
 
