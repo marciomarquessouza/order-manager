@@ -9,6 +9,7 @@ export function PageHeader({
     title,
     subtitle,
     searchText = '',
+    isLoading = false,
     onSearchChange,
     actionButtonLabel,
     searchPlaceholder,
@@ -19,12 +20,12 @@ export function PageHeader({
         <header className={classes.headerContainer}>
             <aside className="flex items-start justify-start pt-12 pl-8">
                 <div className="text-white mr-2">{icon}</div>
-                <p className="text-white text-2xl">
+                <div className="text-white text-2xl">
                     <span className="font-bold uppercase">{title}</span>
                     {subtitle && (
                         <p className="text-white text-lg max-w-2xl truncate">{subtitle}</p>
                     )}
-                </p>
+                </div>
             </aside>
             <div className="flex items-start pt-12">
                 {onSearchChange && (
@@ -41,6 +42,7 @@ export function PageHeader({
                         variant="outlined"
                         color="secondary"
                         onClick={onClickActionButton}
+                        isLoading={isLoading}
                         fullWidth
                     >
                         {actionButtonLabel}
