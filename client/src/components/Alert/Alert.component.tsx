@@ -18,7 +18,7 @@ export function Alert({
             onClose={onClose}
             data-testid={testId}
         >
-            <MaterialAlert onClose={onClose} severity={severity} variant="outlined">
+            <MaterialAlert onClose={onClose} severity={severity} variant="filled">
                 {children}
             </MaterialAlert>
         </SnackBar>
