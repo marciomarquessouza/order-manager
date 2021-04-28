@@ -3,6 +3,7 @@ import {
     createAsyncThunk,
     createEntityAdapter,
     PayloadAction,
+    Update,
 } from '@reduxjs/toolkit';
 import request from '../../api/request';
 import { IOrder } from '../../entities/IOrder';
@@ -21,6 +22,21 @@ export const createOrder = createAsyncThunk(
         try {
             await request.post({ url: '/api/orders', data: order });
             dispatch(openAlert({ message: 'Order created with success', severity: 'success' }));
+        } catch (error) {
+            dispatch(openAlert({ message: error.message, severity: 'error' }));
+            throw new Error(error);
+        }
+    },
+);
+
+export const updateOrder = createAsyncThunk(
+    'orders/update-order',
+    async (orderUpdateData: { uid: string; title: string; bookingDate: number }, { dispatch }) => {
+        try {
+            const { uid, ...data } = orderUpdateData;
+            await request.put({ url: `/api/orders/${uid}`, data });
+            dispatch(openAlert({ message: 'Order update with success', severity: 'success' }));
+            return orderUpdateData;
         } catch (error) {
             dispatch(openAlert({ message: error.message, severity: 'error' }));
             throw new Error(error);
@@ -74,6 +90,18 @@ const ordersSlice = createSlice({
             state.appState = 'created';
         });
         builder.addCase(createOrder.rejected, (state) => {
+            state.appState = 'error';
+        });
+        builder.addCase(updateOrder.pending, (state) => {
+            state.appState = 'loading';
+        });
+        builder.addCase(updateOrder.fulfilled, (state, action) => {
+            const { uid: id, ...changes } = action.payload;
+            const updateData: Update<IOrder> = { id, changes };
+            ordersAdapter.updateOne(state, updateData);
+            state.appState = 'updated';
+        });
+        builder.addCase(updateOrder.rejected, (state) => {
             state.appState = 'error';
         });
     },
