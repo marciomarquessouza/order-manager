@@ -15,6 +15,7 @@ export function TextInput({
     fullWidth,
     name,
     autoFocus = false,
+    error = false,
 }: ITextInputProps) {
     const handleChange = (element: React.ChangeEvent<HTMLTextAreaElement>): void => {
         element.preventDefault();
@@ -23,6 +24,7 @@ export function TextInput({
 
     return (
         <TextField
+            error={error}
             variant={variant}
             type={type}
             onChange={handleChange}
