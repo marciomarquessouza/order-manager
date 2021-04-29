@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "heroku-prebuild": "heroku config:set NPM_CONFIG_PRODUCTION=false cd server && npx yarn && npx yarn build && cd ..",
+    "heroku-prebuild": "cd server && npx yarn && npx yarn build && cd ..",
     "start": "cd server && npx yarn start"
   }
 }
