@@ -6,7 +6,23 @@
 
 ## Client (Frontend)
 
-Move to `client` folder. You need to add the file `client/src/config/firebase.config.ts` with the `serviceAccountKey.json`.
+IMPORTANT: First need to create a .env file with serviceAccountKey.json from firebase config
+
+```.env
+# To avoid message conflic with storybook
+SKIP_PREFLIGHT_CHECK=true
+
+#Firebase config
+REACT_APP_APIKEY=
+REACT_APP_AUTH_DOMAIN=
+REACT_APP_DATABASE_URL=
+REACT_APP_PROJECTID=
+REACT_APP_STORAGEBUCKET=
+REACT_APP_MESSAGING_SENDER_ID=
+REACT_APP_APP_ID=
+```
+
+Move to `client` folder. You need to change the file `client/src/config/firebase.config.ts` with the `serviceAccountKey.json` variables.
 
 Installation:
 
