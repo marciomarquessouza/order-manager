@@ -4,4 +4,3 @@ server/serviceAccountKey.prod.json
 client/firebaseConfig.js
 client/firebaseConfig-dev.js
 client/firebaseConfig-prod.js
-client/.env
