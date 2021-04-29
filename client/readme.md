@@ -6,7 +6,7 @@
 
 ## Client (Frontend)
 
-IMPORTANT: First need to create a .env file with serviceAccountKey.json from firebase config
+IMPORTANT: First you need to create a `.env` file in `.\client` folder with `serviceAccountKey.json` from firebase config
 
 ```.env
 # To avoid message conflic with storybook
