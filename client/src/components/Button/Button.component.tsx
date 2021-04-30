@@ -14,6 +14,11 @@ export function Button({
     isLoading = false,
     type = 'button',
 }: IButtonProps) {
+    const hancleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.preventDefault();
+        onClick();
+    };
+
     return (
         <MaterialButton
             data-testid={testId}
@@ -21,7 +26,7 @@ export function Button({
             disabled={disabled || isLoading}
             variant={variant}
             fullWidth={fullWidth}
-            onClick={onClick}
+            onClick={hancleClick}
             startIcon={isLoading ? <CircularProgress size={12} /> : null}
             type={type}
         >

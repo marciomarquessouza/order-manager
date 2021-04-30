@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { PageLogin } from '../../layout/PageLogin';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { signIn } from './SignIn.slice';
@@ -10,17 +10,25 @@ export function SignIn() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const handleSignIn = () => {
+    const handleSignIn = useCallback(() => {
         if (!email || !password) {
-            return dispatch(
+            dispatch(
                 openAlert({
                     message: 'The e-mail and password fields are mandatory',
                     severity: 'error',
                 }),
             );
+            return;
         }
         dispatch(signIn({ email, password }));
-    };
+    }, [email, password, dispatch]);
+
+    useEffect(() => {
+        if (appState === 'error') {
+            dispatch(openAlert({ message: 'Login error', severity: 'error' }));
+        }
+        return;
+    }, [appState, dispatch]);
 
     return (
         <main className="h-screen flex justify-center items-center bg-gray-200">
