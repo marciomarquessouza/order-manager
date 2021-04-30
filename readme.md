@@ -116,6 +116,7 @@ REACT_APP_PROJECTID=
 REACT_APP_STORAGEBUCKET=
 REACT_APP_MESSAGING_SENDER_ID=
 REACT_APP_APP_ID=
+```
 
 Installation:
 
@@ -187,4 +188,7 @@ Order Form
 
 StoryBook
 [![alt text](https://i.imgur.com/25CeHcY.png)]()
+
+```
+
 ```
