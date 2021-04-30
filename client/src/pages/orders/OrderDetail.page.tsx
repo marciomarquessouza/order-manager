@@ -43,6 +43,7 @@ export function OrderDetail() {
                     subtitle={title}
                     icon={<ListAlt color="inherit" fontSize="large" />}
                     isLoading={appState === 'loading'}
+                    actionButtonIcon="update"
                 />
             </section>
             <section>

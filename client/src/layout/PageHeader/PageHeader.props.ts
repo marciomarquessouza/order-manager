@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { IconType } from '../../components/IconButton';
 
 export interface IPageHeaderProps {
     title: string;
@@ -8,6 +9,7 @@ export interface IPageHeaderProps {
     onSearchChange?: (text: string) => void;
     searchPlaceholder?: string;
     actionButtonLabel: string;
+    actionButtonIcon: IconType;
     isLoading?: boolean;
     onClickActionButton: () => void;
 }

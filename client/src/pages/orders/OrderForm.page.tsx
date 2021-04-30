@@ -43,6 +43,7 @@ export function OrderForm() {
                     subtitle={title}
                     icon={<ListAlt color="inherit" fontSize="large" />}
                     isLoading={appState === 'loading'}
+                    actionButtonIcon="save"
                 />
             </section>
             <section className="px-12 z-10 transform -translate-y-14">

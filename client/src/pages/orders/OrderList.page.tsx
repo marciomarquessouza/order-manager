@@ -48,6 +48,7 @@ export function OrderList() {
                     icon={<ListAlt color="inherit" fontSize="large" />}
                     onSearchChange={handleSearch}
                     searchPlaceholder="Search by Order Title"
+                    actionButtonIcon="create"
                 />
             </section>
             {appState === 'loading' ? (

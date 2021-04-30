@@ -14,7 +14,7 @@ export function Avatar({ name, email, onClick, testId = 'avatar-component' }: IA
             tabIndex={0}
             className="inline-flex"
         >
-            <section className="flex-1 text-right pr-2 max-w-xs">
+            <section className="hidden md:flex flex-col text-right pr-2 max-w-xs">
                 <p className="text-sm truncate">{name}</p>
                 <p className="text-xs text-gray-400 truncate">{email}</p>
             </section>

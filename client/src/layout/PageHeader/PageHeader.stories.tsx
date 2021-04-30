@@ -21,6 +21,7 @@ const Template: Story<IPageHeaderProps> = (props: IPageHeaderProps) => {
             icon={<ListAlt color="inherit" fontSize="large" />}
             actionButtonLabel={props.actionButtonLabel}
             onClickActionButton={props.onClickActionButton}
+            actionButtonIcon="create"
         />
     );
 };
