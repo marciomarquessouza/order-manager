@@ -4,9 +4,12 @@ import { Logo } from '../../components/Logo';
 import { Dialog } from '../../components/Dialog';
 import { Button } from '../../components/Button';
 import { IPageNavProps } from './PageNav.props';
-import { Card, CardActions, CardContent, Typography } from '@material-ui/core';
+import { Avatar as MaterialAvatar } from '@material-ui/core';
+import { Person } from '@material-ui/icons';
+import { useStyles } from './PageNav.styles';
 
 export function PageNav({ name, email, onClickAvatar, onClickLogo }: IPageNavProps) {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
 
     const handleOnClose = (status: boolean) => {
@@ -16,19 +19,20 @@ export function PageNav({ name, email, onClickAvatar, onClickLogo }: IPageNavPro
     return (
         <>
             <Dialog title="User Profile" open={open} onClose={() => handleOnClose(false)}>
-                <Card>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {name}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {email}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button onClick={onClickAvatar}>Logout</Button>
-                    </CardActions>
-                </Card>
+                <section className="flex flex-row">
+                    <MaterialAvatar className={classes.avatarStyle}>
+                        <Person />
+                    </MaterialAvatar>
+                    <aside className="mx-4">
+                        <h4>{name}</h4>
+                        <h6 className="text-gray-400">{email}</h6>
+                    </aside>
+                </section>
+                <footer className="flex flex-row justify-end my-4 mt-4">
+                    <Button onClick={onClickAvatar} color="secondary">
+                        Logout
+                    </Button>
+                </footer>
             </Dialog>
             <header className="flex flex-row justify-between items-center m-6">
                 <Logo variant="row" onClick={onClickLogo} />
