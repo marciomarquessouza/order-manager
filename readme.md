@@ -7,8 +7,8 @@
 [You can visit the site here](https://marciomarquessouza.github.io/order-manager/).
 
 Login:
-email: guest@order-manager.com
-password: guest@order-manager.com
+**email:** `guest@order-manager.com`
+**password:** `guest@order-manager.com`
 
 ## Installation and Setup Instructions
 
