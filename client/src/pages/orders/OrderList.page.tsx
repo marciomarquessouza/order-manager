@@ -47,7 +47,7 @@ export function OrderList() {
                     title="Orders"
                     icon={<ListAlt color="inherit" fontSize="large" />}
                     onSearchChange={handleSearch}
-                    searchPlaceholder="Search by Order Title"
+                    searchPlaceholder="Search"
                     actionButtonIcon="create"
                 />
             </section>
